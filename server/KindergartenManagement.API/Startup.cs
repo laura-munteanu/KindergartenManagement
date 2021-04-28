@@ -28,6 +28,7 @@ namespace KindergartenManagement.API
             services.AddControllers();
 
             services.AddTransient<ITeachersRepository, TeachersRepository>();
+            services.AddTransient<IChildrenRepository, ChildrenRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
