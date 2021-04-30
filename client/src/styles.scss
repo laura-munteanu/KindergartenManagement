@@ -1,3 +1,19 @@
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+.ag-theme-alpine {
+    /* use theme parameters where possible */
+    --ag-foreground-color: #000;
+    --ag-background-color: #5e72e4;
+    --ag-odd-row-background-color:#5e72e4;
+}
+   
+.ag-theme-alpine .ag-header-cell-label {
+    font-style: italic;
+}
+
 .main-container {
+    margin-top: 80px;
+    margin-left: 250px;
     min-height: 500px;
 }
