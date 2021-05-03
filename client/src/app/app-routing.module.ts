@@ -5,6 +5,7 @@ import {
   ChildrenAdminComponent,
   DashboardComponent,
   CalendarComponent,
+  TeachersAdminEditComponent,
 } from './components/index';
 
 const routes: Routes = [
@@ -13,11 +14,15 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'teachers/admin',
+    path: 'admin/teachers',
     component: TeachersAdminComponent
   },
   {
-    path: 'children/admin',
+    path: 'admin/teachers/edit/:id',
+    component: TeachersAdminEditComponent
+  },
+  {
+    path: 'admin/children',
     component: ChildrenAdminComponent,
 
   },

@@ -7,13 +7,14 @@ import { AppComponent } from './app.component';
 import {
   NavbarComponent,
   TeachersAdminComponent,
+  TeachersAdminEditComponent,
+  TeachersAdminActionsComponent,
   ChildrenAdminComponent,
   DashboardComponent,
   CalendarComponent,
   HeaderComponent,
-  FooterComponent
+  FooterComponent,
 } from './components/index';
-
 
 @NgModule({
   declarations: [
@@ -24,12 +25,16 @@ import {
     FooterComponent,
     ChildrenAdminComponent,
     DashboardComponent,
-    CalendarComponent
+    CalendarComponent,
+    TeachersAdminEditComponent,
+    TeachersAdminActionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([
+      TeachersAdminActionsComponent
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
