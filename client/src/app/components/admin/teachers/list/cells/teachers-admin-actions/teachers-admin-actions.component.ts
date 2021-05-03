@@ -13,12 +13,19 @@ export class TeachersAdminActionsComponent implements ICellRendererAngularComp {
   constructor() { }
 
   agInit(params: any): void {
-    console.log(params);
     this.params = params;
   }
 
   refresh(): boolean {
     return false;
+  }
+
+  editCellTeacher() {
+    this.params.context.componentParent.editTeacher(this.params.data.id);
+  }
+
+  deleteCellTeacher() {
+    this.params.context.componentParent.deleteTeacher(this.params.data.id, `${this.params.data.firstName} ${this.params.data.lastName}`);
   }
 
 }

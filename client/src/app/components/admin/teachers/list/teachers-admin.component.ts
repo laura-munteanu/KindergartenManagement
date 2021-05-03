@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GridOptions } from 'ag-grid-community';
 import { TeachersAdminActionsComponent } from './cells/teachers-admin-actions/teachers-admin-actions.component';
 
@@ -13,7 +14,7 @@ export class TeachersAdminComponent implements OnInit {
   public lstColumns: any;
   public gridApi: any;
 
-  lstTeachers = [
+  public lstTeachers = [
     {
         "id": 1,
         "firstName": "Teacher",
@@ -30,7 +31,9 @@ export class TeachersAdminComponent implements OnInit {
     }
 ];
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
     this.setGridColumns();
@@ -39,6 +42,20 @@ export class TeachersAdminComponent implements OnInit {
 
   onGridReady(params: any) {
     this.gridApi = params.api;
+  }
+
+  addTeacher() {
+    this._router.navigate(['admin', 'teachers', 'edit', 0]);
+  }
+
+  editTeacher(id: number) {
+    this._router.navigate(['admin', 'teachers', 'edit', id]);
+  }
+
+  deleteTeacher(id: number, name: string) {
+    console.log(id);
+    console.log(name);
+    //todo: show modal with confirmation; after confirmation send delete request to server with the id
   }
 
   private setGridLayout() {
