@@ -6,7 +6,7 @@
               <h3 class="mb-0 text-white">Teachers</h3>
             </div>
             <div class="col text-right">
-              <a (click)="addTeacher()" class="btn btn-sm btn-primary">Add Teacher</a>
+              <a (click)="addTeacher()" class="btn btn-sm btn-primary active"><i class="fas fa-user-plus"></i> Add Teacher</a>
             </div>
           </div>
     </div>
@@ -14,31 +14,7 @@
         <ag-grid-angular style="width: 100%; margin:5px 20px;" class="ag-theme-alpine" 
             [gridOptions]="gridOptions"
             [rowData]="lstTeachers"
-            [columnDefs]="lstColumns"
-            (gridReady)="onGridReady($event)">
+        >
         </ag-grid-angular>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete teacher</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete teacher?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
-                    <button type="button" class="btn btn-primary">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

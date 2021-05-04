@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GridOptions } from 'ag-grid-community';
+import { TeachersService } from 'src/app/services';
 import { TeachersAdminActionsComponent } from './cells/teachers-admin-actions/teachers-admin-actions.component';
 
 @Component({
@@ -12,36 +13,18 @@ import { TeachersAdminActionsComponent } from './cells/teachers-admin-actions/te
 export class TeachersAdminComponent implements OnInit {
   public gridOptions: any = {};
   public lstColumns: any;
-  public gridApi: any;
 
-  public lstTeachers = [
-    {
-        "id": 1,
-        "firstName": "Teacher",
-        "lastName": "gzzuujjh",
-        "isActive": true,
-        "isDeleted": false
-    },
-    {
-        "id": 2,
-        "firstName": "ghj",
-        "lastName": "jjgg",
-        "isActive": false,
-        "isDeleted": false
-    }
-];
-
+  public lstTeachers = [];
   constructor(
-    private _router: Router
-  ) { }
+    private _router: Router, private _teachersService: TeachersService
+  ) {
+   }
 
   ngOnInit(): void {
     this.setGridColumns();
     this.setGridLayout();
-  }
+    this.getData();
 
-  onGridReady(params: any) {
-    this.gridApi = params.api;
   }
 
   addTeacher() {
@@ -75,14 +58,15 @@ export class TeachersAdminComponent implements OnInit {
       suppressMenuHide: true,
       suppressDragLeaveHidesColumns: true,
       overlayNoRowsTemplate: 'No teacher found',
-      rowData: [],
-      domLayout: 'autoHeight'
+      domLayout: 'autoHeight',
+      columnDefs: this.lstColumns
     };
   }
   
   private setGridColumns() {
     this.lstColumns = [
-      { field: 'firstName', headerName: 'Name'},
+      { field: 'firstName', 
+        headerName: 'Name'},
       { field: 'lastName'},
       { 
         headerName: 'Status',
@@ -92,8 +76,15 @@ export class TeachersAdminComponent implements OnInit {
       { 
         headerName: 'Actions',
         cellRendererFramework: TeachersAdminActionsComponent,
-        width: 200
+        width: 200,
+        sortable: false
       }
     ];
+  }
+
+  private getData(){
+    this._teachersService.getList().subscribe(data => {
+      this.lstTeachers = data;
+    });
   }
 }

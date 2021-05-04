@@ -6,4 +6,4 @@ export * from './shared/footer/footer.component';
 
 export * from './admin/teachers';
 
-export * from './admin/children-admin/children-admin.component';
+export * from './admin/children';

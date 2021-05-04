@@ -22,6 +22,7 @@ export class TeachersAdminActionsComponent implements ICellRendererAngularComp {
 
   editCellTeacher() {
     this.params.context.componentParent.editTeacher(this.params.data.id);
+
   }
 
   deleteCellTeacher() {

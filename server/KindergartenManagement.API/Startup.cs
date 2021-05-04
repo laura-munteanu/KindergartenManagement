@@ -29,11 +29,22 @@ namespace KindergartenManagement.API
 
             services.AddTransient<ITeachersRepository, TeachersRepository>();
             services.AddTransient<IChildrenRepository, ChildrenRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyPolicy",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin();
+                                  });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
+
+            app.UseCors("MyPolicy");
 
             app.UseEndpoints(endpoints =>
             {
