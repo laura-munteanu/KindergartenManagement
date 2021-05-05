@@ -36,12 +36,10 @@ export class TeachersAdminEditComponent implements OnInit {
       //   }
       // );
    });
-
   }
 
   public back(){
      this._router.navigate(['admin', 'teachers']);
   }
-
 
 }

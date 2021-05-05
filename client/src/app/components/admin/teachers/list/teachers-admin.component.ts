@@ -46,7 +46,7 @@ export class TeachersAdminComponent implements OnInit {
       defaultColDef: {
         resizable: true,
         sortable: true,
-        width: 100,
+        width: 150,
         filterParams: {selectAllOnMiniFilter: true}
       },
       context: {
@@ -66,8 +66,11 @@ export class TeachersAdminComponent implements OnInit {
   private setGridColumns() {
     this.lstColumns = [
       { field: 'firstName', 
-        headerName: 'Name'},
-      { field: 'lastName'},
+        headerName: 'First Name'
+      },
+      { field: 'lastName',
+        headerName: 'Last Name'
+      },
       { 
         headerName: 'Status',
         valueGetter: (params: any) => params.data.isActive ? 'active' : 'inactive',

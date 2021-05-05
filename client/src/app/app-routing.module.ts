@@ -6,6 +6,7 @@ import {
   DashboardComponent,
   CalendarComponent,
   TeachersAdminEditComponent,
+  ChildAdminEditComponent,
 } from './components/index';
 
 const routes: Routes = [
@@ -23,8 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'admin/children',
-    component: ChildrenAdminComponent,
-
+    component: ChildrenAdminComponent
+  },
+  {
+    path: 'admin/children/edit/:id',
+    component: ChildAdminEditComponent
   },
   {
     path: 'calendar',
