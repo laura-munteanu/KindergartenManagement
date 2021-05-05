@@ -7,6 +7,8 @@ import {
   CalendarComponent,
   TeachersAdminEditComponent,
   ChildAdminEditComponent,
+  GroupsAdminComponent,
+  GroupAdminEditComponent,
 } from './components/index';
 
 const routes: Routes = [
@@ -29,6 +31,14 @@ const routes: Routes = [
   {
     path: 'admin/children/edit/:id',
     component: ChildAdminEditComponent
+  },
+  {
+    path: 'admin/groups',
+    component: GroupsAdminComponent
+  },
+  {
+    path: 'admin/groups/edit/:id',
+    component: GroupAdminEditComponent
   },
   {
     path: 'calendar',

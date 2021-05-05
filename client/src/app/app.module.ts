@@ -13,6 +13,9 @@ import {
   ChildrenAdminComponent,
   ChildrenAdminActionsComponent,
   ChildAdminEditComponent,
+  GroupsAdminComponent,
+  GroupAdminEditComponent,
+  GroupsAdminActionsComponent,
   DashboardComponent,
   CalendarComponent,
   HeaderComponent,
@@ -33,13 +36,17 @@ import {
     TeachersAdminActionsComponent,
     ChildrenAdminActionsComponent,
     ChildAdminEditComponent,
+    GroupsAdminComponent,
+    GroupAdminEditComponent,
+    GroupsAdminActionsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AgGridModule.withComponents([
       TeachersAdminActionsComponent,
-      ChildrenAdminActionsComponent
+      ChildrenAdminActionsComponent,
+      GroupsAdminActionsComponent
     ]),
     HttpClientModule
   ],

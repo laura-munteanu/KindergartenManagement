@@ -7,3 +7,5 @@ export * from './shared/footer/footer.component';
 export * from './admin/teachers';
 
 export * from './admin/children';
+
+export * from './admin/groups';

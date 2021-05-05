@@ -33,6 +33,7 @@ export class ChildrenAdminComponent implements OnInit {
   }
 
   public deleteChild(id: number, name: string){
+    //todo: show modal with confirmation; after confirmation send delete request to server with the id
 
   }
 
