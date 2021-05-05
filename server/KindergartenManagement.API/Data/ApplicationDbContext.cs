@@ -21,5 +21,6 @@ namespace KindergartenManagement.API.Data
 
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Child> Children { get; set; }
+        public DbSet<Group> Groups { get; set; }
     }
 }

@@ -10,24 +10,26 @@ namespace KindergartenManagement.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TeachersController : ControllerBase
+    public class GroupsController : ControllerBase
     {
-        private readonly ITeachersRepository _teachersRepository;
-        public TeachersController(ITeachersRepository teachersRepository)
+        private IGroupsRepository _GroupsRepository;
+
+        public GroupsController(IGroupsRepository GroupsRepository)
         {
-            _teachersRepository = teachersRepository;
+            _GroupsRepository = GroupsRepository;
         }
 
         [HttpGet]
-        public List<Teacher> GetList()
+        public List<Group> GetList()
         {
-            return _teachersRepository.GetList();
+           return _GroupsRepository.GetList();
         }
 
         [HttpGet("{id}")]
-        public Teacher GetById(long id)
+        public Group GetById(long id)
         {
-            return _teachersRepository.GetById(id);
+            return _GroupsRepository.GetById(id);
         }
+        
     }
 }
