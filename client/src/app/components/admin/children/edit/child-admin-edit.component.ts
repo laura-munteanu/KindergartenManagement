@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'km-child-admin-edit',
@@ -14,7 +16,14 @@ export class ChildAdminEditComponent implements OnInit {
 
   private id: number = 0;
 
-  constructor(private _router: Router, private _route: ActivatedRoute) { }
+  ChildAdminForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    age: [''],
+    photo: ['']
+  })
+
+  constructor(private _router: Router, private _route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(params =>{
@@ -31,5 +40,11 @@ export class ChildAdminEditComponent implements OnInit {
   public back(){
     this._router.navigate(['admin', 'children']);
  }
+
+ saveChanges() {
+  if (this.ChildAdminForm.valid) {
+   console.log(this.ChildAdminForm.value);}
+   else console.log('not good');
+}
 
 }
