@@ -15,21 +15,22 @@ namespace KindergartenManagement.API.Data.Repositories
 
         }
 
-        public long AddOrUpdate(Teacher teacher)
+        public long Add(Teacher teacher)
         {
-            if(teacher.Id > 0)
-            {
-                //update
-                _dbContext.Update(teacher);
-            }
-            else
-            {
-                //insert
-                _dbContext.Teachers.Add(teacher);
-            }
+            _dbContext.Teachers.Add(teacher);
             _dbContext.SaveChanges();
             return teacher.Id;
         }
+
+        public long Update(Teacher teacher)
+        {
+            _dbContext.Update(teacher);
+            _dbContext.SaveChanges();
+            return teacher.Id;
+
+        }
+
+
 
         public void Delete(long id)
         {
