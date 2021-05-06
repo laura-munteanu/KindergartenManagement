@@ -30,6 +30,7 @@ namespace KindergartenManagement.API
             services.AddTransient<ITeachersRepository, TeachersRepository>();
             services.AddTransient<IChildrenRepository, ChildrenRepository>();
             services.AddTransient<IGroupsRepository, GroupsRepository>();
+            services.AddTransient<IActivitiesRepository, ActivitiesRepository>();
 
             services.AddCors(options =>
             {
