@@ -12,7 +12,6 @@ namespace KindergartenManagement.API.Data.Repositories
         public TeachersRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-
         }
 
         public long Add(Teacher teacher)
@@ -27,10 +26,7 @@ namespace KindergartenManagement.API.Data.Repositories
             _dbContext.Update(teacher);
             _dbContext.SaveChanges();
             return teacher.Id;
-
         }
-
-
 
         public void Delete(long id)
         {

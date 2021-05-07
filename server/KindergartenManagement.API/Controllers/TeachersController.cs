@@ -42,5 +42,11 @@ namespace KindergartenManagement.API.Controllers
             return _teachersRepository.Update(teacher);
         }
 
+        [HttpDelete("{id}")]
+        public void Delete(long id)
+        {
+            _teachersRepository.Delete(id);
+        }
+
     }
 }

@@ -38,6 +38,7 @@ namespace KindergartenManagement.API
                                   builder =>
                                   {
                                       builder.AllowAnyOrigin();
+                                      builder.AllowAnyMethod();
                                   });
             });
         }
