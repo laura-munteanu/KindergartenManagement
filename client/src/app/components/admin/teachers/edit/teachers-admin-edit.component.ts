@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TeachersService } from 'src/app/services';
+import { ControllersService } from 'ag-grid-community';
 
 
 @Component({
@@ -41,14 +42,18 @@ export class TeachersAdminEditComponent implements OnInit {
       // this._teachersService.getById(this.id).subscribe(
       //   response => {
       //     this.teacher = response;
+      //     this.populateTeacherForm();
       //   }
-      // )
-     
-   });
-  }
+      // );
 
-  public back(){
-     this._router.navigate(['admin', 'teachers']);
+      if (this.isEditMode){
+        this._teachersService.getById(this.id).subscribe(
+        response => {
+          this.teacher = response;
+          this.populateTeacherForm();
+        });
+      }
+   });
   }
 
   public createForm(){
@@ -56,14 +61,34 @@ export class TeachersAdminEditComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       status: [''],
-      photo: ['']
+      // photo: ['']
     }) 
   };
 
+  public populateTeacherForm() {
+    this.TeachersAdminForm.patchValue({
+      firstName: this.teacher.firstName,
+      lastName: this.teacher.lastName,
+      status: this.teacher.status,
+      photo: this.teacher.photo
+    })
+  }
+
+
+  public back(){
+     this._router.navigate(['admin', 'teachers']);
+  }
+
   public saveChanges(){
   if (this.TeachersAdminForm.valid) {
-    console.log(this.TeachersAdminForm.value);}
-    else console.log('not good');
+     console.log(this.TeachersAdminForm.value);}
+     else console.log('not good');
+
+    // this._teachersService.add(this.teacher).subscribe(data => {
+    //   console.log(data);
+    // })
+
+  
   }
 
 }
