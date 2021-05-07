@@ -12,4 +12,12 @@ export class TeachersService {
   getList() : Observable<any>{
     return this._http.get('http://localhost:5000/api/teachers');
   }
+
+  getById(id: number) : Observable<any>{
+    return this._http.get('http://localhost:5000/api/teachers/'+ id);
+  }
+
+  delete(id: number): Observable<any>{
+    return this._http.delete('http://localhost:5000/api/teachers/'+ id);
+  }
 }

@@ -16,9 +16,7 @@ export class TeachersAdminComponent implements OnInit {
 
   public lstTeachers = [];
   constructor(
-    private _router: Router, private _teachersService: TeachersService
-  ) {
-   }
+    private _router: Router, private _teachersService: TeachersService) {}
 
   ngOnInit(): void {
     this.setGridColumns();
@@ -38,6 +36,9 @@ export class TeachersAdminComponent implements OnInit {
   deleteTeacher(id: number, name: string) {
     console.log(id);
     console.log(name);
+    this._teachersService.delete(id).subscribe(data => {
+    this.getData();
+    });
     //todo: show modal with confirmation; after confirmation send delete request to server with the id
   }
 
