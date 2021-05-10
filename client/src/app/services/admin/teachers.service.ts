@@ -19,13 +19,13 @@ export class TeachersService {
 
   add(teacher: any): Observable<any>{
     const headers = { 'content-type': 'application/json'}  
-    const body=JSON.stringify(teacher);
+    const body = JSON.stringify(teacher);
     return this._http.put("http://localhost:5000/api/teachers", body, {headers} );
   }
 
   update(teacher: any): Observable<any>{
-    const headers = { 'content-type': 'application/json'}  
-    const body=JSON.stringify(teacher);
+    const headers = {'content-type': 'application/json'}  
+    const body = JSON.stringify(teacher);
     return this._http.put("http://localhost:5000/api/teachers", body, {headers} );
   }
 

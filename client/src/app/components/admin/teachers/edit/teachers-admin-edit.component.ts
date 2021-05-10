@@ -39,18 +39,17 @@ export class TeachersAdminEditComponent implements OnInit {
       this.title = this.isEditMode ? 'Edit Teacher' : 'Add Teacher';
       this.buttonText = this.isEditMode ? 'Save changes' : 'Add Teacher';
      
-      // this._teachersService.getById(this.id).subscribe(
-      //   response => {
-      //     this.teacher = response;
-      //     this.populateTeacherForm();
-      //   }
-      // );
-
       if (this.isEditMode){
         this._teachersService.getById(this.id).subscribe(
         response => {
           this.teacher = response;
+          console.log("get by id:"+ JSON.stringify(this.teacher))
           this.populateTeacherForm();
+          // this._teachersService.update(this.id, this.teacher).subscribe(data => {
+          // console.log("sent "+JSON.stringify(this.id, this.teacher));
+
+          // });
+
         });
       }
    });
@@ -67,6 +66,7 @@ export class TeachersAdminEditComponent implements OnInit {
 
   public populateTeacherForm() {
     this.TeachersAdminForm.patchValue({
+      id: this.id,
       firstName: this.teacher.firstName,
       lastName: this.teacher.lastName,
       status: this.teacher.status,
@@ -74,21 +74,39 @@ export class TeachersAdminEditComponent implements OnInit {
     })
   }
 
+  public addNewTeacher(){
+    this._teachersService.add(this.TeachersAdminForm.value).subscribe(data => {
+      this._router.navigate(['admin', 'teachers']);
+    });
+  }
+
+  public updateTeacher(){
+    console.log(this.TeachersAdminForm.value);
+
+    this._teachersService.update(this.TeachersAdminForm.value).subscribe(data => {
+     // this._router.navigate(['admin', 'teachers']);
+    console.log("sent "+ JSON.stringify( this.TeachersAdminForm.value));
+     });
+  }
 
   public back(){
      this._router.navigate(['admin', 'teachers']);
   }
 
+
+  public statusTeacher(e: any){
+    console.log("radio button  "+ e.target.value);
+  } 
+
   public saveChanges(){
-  if (this.TeachersAdminForm.valid) {
-     console.log(this.TeachersAdminForm.value);}
-     else console.log('not good');
-
-    // this._teachersService.add(this.teacher).subscribe(data => {
-    //   console.log(data);
-    // })
-
-  
+    if (this.TeachersAdminForm.valid) {
+      if (this.isEditMode){
+        this.updateTeacher();
+      }
+      else {
+        this.addNewTeacher();
+      }
+    }
   }
 
 }
