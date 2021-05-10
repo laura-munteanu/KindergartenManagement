@@ -1,4 +1,4 @@
-<form [formGroup]="TeachersAdminForm">
+<form [formGroup]="form">
   <div class="row">
     <div class="col-xl-8">
       <div class="card bg-default">
@@ -17,12 +17,12 @@
           <div class="form-group">
             <label class="custom-toggle">Status</label>
             <div class="custom-control custom-radio">
-              <input type="radio" id="customRadioInline1" formControlName="status" value ="1" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline1">active</label>
+              <input type="radio" id="activeStatus" formControlName="status" value ="1" class="custom-control-input">
+              <label class="custom-control-label" for="activeStatus">active</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="customRadioInline2" formControlName="status" value ="0" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline2">inactive</label>
+              <input type="radio" id="inactiveStatus" formControlName="status" value ="0" class="custom-control-input">
+              <label class="custom-control-label" for="inactiveStatus">inactive</label>
             </div>
           </div>
         </div>

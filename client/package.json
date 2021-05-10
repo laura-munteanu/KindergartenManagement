@@ -22,6 +22,7 @@
     "@creative-tim-official/argon-dashboard-free": "^1.2.0",
     "ag-grid-angular": "^25.2.0",
     "ag-grid-community": "^25.2.0",
+    "alertifyjs": "^1.13.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

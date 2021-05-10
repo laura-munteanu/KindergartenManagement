@@ -1,9 +1,8 @@
-import { HttpBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { TeachersService } from 'src/app/services';
-import { ControllersService } from 'ag-grid-community';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AlertifyService, TeachersService } from 'src/app/services';
+import { Teacher } from 'src/app/models';
 
 
 @Component({
@@ -18,95 +17,75 @@ export class TeachersAdminEditComponent implements OnInit {
   public title: string = '';
   public buttonText: string = '';
 
-  private id: number = 0;
-  public TeachersAdminForm: FormGroup; 
-  public teacher: any;
+  public form: FormGroup; 
+  public teacher: Teacher;
 
-
-  constructor(private _route: ActivatedRoute, private _router: Router, private fb: FormBuilder, private _teachersService: TeachersService) { }
+  constructor(
+    private _route: ActivatedRoute, 
+    private _router: Router, 
+    private _teachersService: TeachersService,
+    private _alertifyService: AlertifyService) { }
 
   ngOnInit(): void {
-
+    this.teacher = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      photo: '',
+      isActive: true
+    };
     this.createForm();
 
     this._route.paramMap.subscribe(params => {
-      let id = params.get('id');
+      const id = params.get('id');
 
-      this.id = id == null ?  0 : +id;
-
-      this.isEditMode = this.id > 0;
+      const teacherId = id == null ?  0 : +id;
+      this.isEditMode = teacherId > 0;
 
       this.title = this.isEditMode ? 'Edit Teacher' : 'Add Teacher';
       this.buttonText = this.isEditMode ? 'Save changes' : 'Add Teacher';
-     
+
       if (this.isEditMode){
-        this._teachersService.getById(this.id).subscribe(
-        response => {
+        this._teachersService.getById(teacherId).subscribe(response => {
           this.teacher = response;
-          console.log("get by id:"+ JSON.stringify(this.teacher))
-          this.populateTeacherForm();
-          // this._teachersService.update(this.id, this.teacher).subscribe(data => {
-          // console.log("sent "+JSON.stringify(this.id, this.teacher));
-
-          // });
-
+          this.createForm();
         });
       }
    });
-  }
-
-  public createForm(){
-    this.TeachersAdminForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      status: [''],
-      // photo: ['']
-    }) 
-  };
-
-  public populateTeacherForm() {
-    this.TeachersAdminForm.patchValue({
-      id: this.id,
-      firstName: this.teacher.firstName,
-      lastName: this.teacher.lastName,
-      status: this.teacher.status,
-      photo: this.teacher.photo
-    })
-  }
-
-  public addNewTeacher(){
-    this._teachersService.add(this.TeachersAdminForm.value).subscribe(data => {
-      this._router.navigate(['admin', 'teachers']);
-    });
-  }
-
-  public updateTeacher(){
-    console.log(this.TeachersAdminForm.value);
-
-    this._teachersService.update(this.TeachersAdminForm.value).subscribe(data => {
-     // this._router.navigate(['admin', 'teachers']);
-    console.log("sent "+ JSON.stringify( this.TeachersAdminForm.value));
-     });
   }
 
   public back(){
      this._router.navigate(['admin', 'teachers']);
   }
 
-
-  public statusTeacher(e: any){
-    console.log("radio button  "+ e.target.value);
-  } 
-
   public saveChanges(){
-    if (this.TeachersAdminForm.valid) {
-      if (this.isEditMode){
-        this.updateTeacher();
-      }
-      else {
-        this.addNewTeacher();
-      }
+    if (this.form.valid) {
+      const updatedTeacher: Teacher = {
+        id: this.teacher.id,
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        isActive: this.form.value.status == '1' ? true : false,
+        photo: this.form.value.photo
+      };
+      this._teachersService.addOrUpdate(updatedTeacher).subscribe(data => {
+        if (data > 0) {
+          this._alertifyService.success(this.isEditMode ? 'The teacher details were successfully saved!': 'The teacher was successfully added');
+          this._router.navigate(['admin', 'teachers']);
+        }
+        else {
+          this._alertifyService.error('An error has occured. Please try again later!');
+        }
+      });
     }
   }
+
+  private createForm(){
+    this.form = new FormGroup({
+      firstName: new FormControl(this.teacher.firstName),
+      lastName: new FormControl(this.teacher.lastName),
+      status: new FormControl(this.teacher.isActive ? "1" : "0"),
+      photo: new FormControl(this.teacher.photo),
+    }) 
+  };
 
 }

@@ -2,7 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GridOptions } from 'ag-grid-community';
-import { TeachersService } from 'src/app/services';
+import { AlertifyService, TeachersService } from 'src/app/services';
 import { TeachersAdminActionsComponent } from './cells/teachers-admin-actions/teachers-admin-actions.component';
 
 @Component({
@@ -16,13 +16,14 @@ export class TeachersAdminComponent implements OnInit {
 
   public lstTeachers = [];
   constructor(
-    private _router: Router, private _teachersService: TeachersService) {}
+    private _router: Router, 
+    private _teachersService: TeachersService,
+    private _alertifyService: AlertifyService) {}
 
   ngOnInit(): void {
     this.setGridColumns();
     this.setGridLayout();
     this.getData();
-
   }
 
   addTeacher() {
@@ -34,12 +35,12 @@ export class TeachersAdminComponent implements OnInit {
   }
 
   deleteTeacher(id: number, name: string) {
-    console.log(id);
-    console.log(name);
-    this._teachersService.delete(id).subscribe(data => {
-    this.getData();
+    this._alertifyService.confirm(`Are you sure you want to delete the following teacher?<br/><b><i>${name}</i></b>`, () => {
+      this._teachersService.delete(id).subscribe(data => {
+        this._alertifyService.success('The teacher was successfully deleted');
+        this.getData();
+      });
     });
-    //todo: show modal with confirmation; after confirmation send delete request to server with the id
   }
 
   private setGridLayout() {
