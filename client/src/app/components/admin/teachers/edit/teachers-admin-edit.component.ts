@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService, TeachersService } from 'src/app/services';
 import { Teacher } from 'src/app/models';
 
@@ -69,7 +69,7 @@ export class TeachersAdminEditComponent implements OnInit {
       };
       this._teachersService.addOrUpdate(updatedTeacher).subscribe(data => {
         if (data > 0) {
-          this._alertifyService.success(this.isEditMode ? 'The teacher details were successfully saved!': 'The teacher was successfully added');
+          this._alertifyService.success(this.isEditMode ? 'The teacher details were successfully updated!': 'The teacher was successfully added');
           this._router.navigate(['admin', 'teachers']);
         }
         else {
@@ -81,9 +81,9 @@ export class TeachersAdminEditComponent implements OnInit {
 
   private createForm(){
     this.form = new FormGroup({
-      firstName: new FormControl(this.teacher.firstName),
-      lastName: new FormControl(this.teacher.lastName),
-      status: new FormControl(this.teacher.isActive ? "1" : "0"),
+      firstName: new FormControl(this.teacher.firstName, [Validators.required, Validators.maxLength(10), Validators.minLength(5)]),
+      lastName: new FormControl(this.teacher.lastName, Validators.required),
+      status: new FormControl(this.teacher.isActive ? "1" : "0", Validators.required),
       photo: new FormControl(this.teacher.photo),
     }) 
   };

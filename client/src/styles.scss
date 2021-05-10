@@ -1,6 +1,8 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
+$error-color: #d9230f;
+
 .ag-theme-alpine {
     /* use theme parameters where possible */
     --ag-foreground-color: #000;
@@ -21,10 +23,27 @@
 /***********       ALERTIFY JS      ***********/
 .ajs-button.ajs-ok {
     color: #ffffff;
-    background-color: #d9230f;
+    background-color: $error-color;
     border: 1px solid #a91b0c;
 }
 .ajs-message {
     color: #ffffff;
 }
   /**********      END ALERTIFY JS      *********/
+
+  
+.form-group.error {
+	color: $error-color;
+}
+
+.form-group.error .form-control {
+	color: $error-color;
+    border: 1px solid $error-color;
+}
+
+.form-group .validation-error {
+    color: $error-color;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 5px;
+}

@@ -6,15 +6,19 @@
           <h3 class="mb-0 text-white">{{title}}</h3>
         </div>
         <div class="card-body bg-secondary">
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('firstName')?.invalid && form.get('firstName')?.touched}">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="First Name">
+            <div class="validation-error" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched && form.get('firstName')?.errors?.required">First name is mandatory!</div>
+            <div class="validation-error" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched && form.get('firstName')?.errors?.minlength">First name has to be minimum 5 characters length!</div>
+            <div class="validation-error" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched && form.get('firstName')?.errors?.maxlength">First name has to be maximum 10 characters length!</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('lastName')?.invalid && form.get('lastName')?.touched}">
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Last Name">
+            <div class="validation-error" *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">The last name is mandatory!</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('status')?.invalid && form.get('status')?.touched}">
             <label class="custom-toggle">Status</label>
             <div class="custom-control custom-radio">
               <input type="radio" id="activeStatus" formControlName="status" value ="1" class="custom-control-input">
@@ -24,6 +28,7 @@
               <input type="radio" id="inactiveStatus" formControlName="status" value ="0" class="custom-control-input">
               <label class="custom-control-label" for="inactiveStatus">inactive</label>
             </div>
+            <div class="validation-error" *ngIf="form.get('status')?.invalid && form.get('status')?.touched">The status is mandatory!</div>
           </div>
         </div>
       </div>
@@ -34,9 +39,11 @@
           <h3 class="mb-0 text-white">Photo</h3>
         </div>
         <div class="card-body bg-secondary text-center">
-          <img src="assets/images/ProfilePicture.jpg" alt="photo" style="width: 225px; height: 225px;" />
-          <div class="card-footer bg-secondary">
-            <button class="btn btn-primary">Upload photo</button>
+          <div class="form-group">
+            <img src="assets/images/ProfilePicture.jpg" alt="photo" style="width: 225px; height: 225px;" />
+            <div class="card-footer bg-secondary">
+              <button class="btn btn-primary">Upload photo</button>
+            </div>
           </div>
         </div>
       </div>
@@ -45,7 +52,7 @@
   <div class="row">
     <div class="card-body bg-secondary">
       <div class="form-group">
-        <button type="submit" class="btn btn-success" (click)="saveChanges()">{{buttonText}}</button>
+        <button type="submit" class="btn btn-success" (click)="saveChanges()" [disabled]="form.invalid">{{buttonText}}</button>
         <button class="btn btn-secondary" (click)="back()">Back</button>
       </div>
     </div>
