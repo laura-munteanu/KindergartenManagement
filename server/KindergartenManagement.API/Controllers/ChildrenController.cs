@@ -28,5 +28,23 @@ namespace KindergartenManagement.API.Controllers
         {
             return _childrenRepository.GetById(id);
         }
+
+        [HttpPost]
+        public long Add(Child child)
+        {
+            return _childrenRepository.Add(child);
+        }
+
+        [HttpPut]
+        public long Update(Child child)
+        {
+            return _childrenRepository.Update(child);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(long id)
+        {
+            _childrenRepository.Delete(id);
+        }
     }
 }

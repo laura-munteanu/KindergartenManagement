@@ -14,16 +14,17 @@ namespace KindergartenManagement.API.Data.Repositories
         {
             _dbContext = dbContext;
         }
-        public long AddOrUpdate(Child child)
+
+        public long Add(Child child)
         {
-            if (child.Id > 0)
-            {
-                _dbContext.Update(child);
-            }
-            else
-            {
-                _dbContext.Children.Add(child);
-            }
+            _dbContext.Children.Add(child);
+            _dbContext.SaveChanges();
+            return child.Id;
+        }
+
+        public long Update(Child child)
+        {
+            _dbContext.Update(child);
             _dbContext.SaveChanges();
             return child.Id;
         }
@@ -54,5 +55,7 @@ namespace KindergartenManagement.API.Data.Repositories
                 .ToList();
             return children;
         }
+
+       
     }
 }

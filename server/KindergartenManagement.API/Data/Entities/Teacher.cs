@@ -12,6 +12,5 @@ namespace KindergartenManagement.API.Data.Entities
         public string LastName { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-
     }
 }
