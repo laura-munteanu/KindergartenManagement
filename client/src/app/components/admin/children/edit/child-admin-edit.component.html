@@ -1,4 +1,4 @@
-<form [formGroup]="ChildAdminForm">
+<form [formGroup]="form">
   <div class="row">
     <div class="col-xl-8">
       <div class="card bg-default">
@@ -6,23 +6,23 @@
           <h3 class="mb-0 text-white">{{title}}</h3>
         </div>
         <div class="card-body bg-secondary">
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('firstName')?.invalid && form.get('firstName')?.touched}">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="First Name">
+            <div class="validation-error" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched && form.get('firstName')?.errors?.required">First name is mandatory</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('lastName')?.invalid && form.get('lastName')?.touched}">
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Last Name">
+            <div class="validation-error" *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched && form.get('lastName')?.errors?.required">Last name is mandatory</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{error: form.get('age')?.invalid && form.get('age')?.touched}">
             <label for="ageChild">Age</label>
-            <select class="form-control" formControlName="age" id="ageChild">
-              <option selected>Select Child's age</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
+            <select class="form-control" formControlName="age" id="ageChild" placeholder>
+              <option value="">Select Child's age</option>
+              <option *ngFor="let age of ageRange" [value]="age.value">{{age.label}}</option>
             </select>
+            <div class="validation-error" *ngIf="form.get('age')?.invalid && form.get('age')?.touched && form.get('age')?.errors?.required">Age is mandatory</div>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
   <div class="row">
     <div class="card-body bg-secondary">
       <div class="form-group">
-        <button type="submit" class="btn btn-success" (click)="saveChanges()">{{buttonText}}</button>
+        <button type="submit" class="btn btn-success" (click)="saveChanges()" [disabled]="form.invalid">{{buttonText}}</button>
         <button class="btn btn-secondary" (click)="back()">Back</button>
       </div>
     </div>

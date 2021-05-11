@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Child } from 'src/app/models';
+import { AlertifyService, ChildrenService } from 'src/app/services';
 
 
 @Component({
@@ -14,37 +16,88 @@ export class ChildAdminEditComponent implements OnInit {
   public title: string = '';
   public buttonText: string = '';
 
-  private id: number = 0;
+  public form: FormGroup;
+  public child: Child;
 
-  ChildAdminForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    age: [''],
-    photo: ['']
-  })
+  public ageRange=[
+    // {value: '', label: 'Select age'},
+    {value: '3', label: '3'},
+    {value: '4', label: '4'},
+    {value: '5', label: '5'},
+    {value: '6', label: '6'}
+  ] 
+ 
 
-  constructor(private _router: Router, private _route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(
+    private _router: Router, 
+    private _route: ActivatedRoute,
+    private _childrenService: ChildrenService,
+    private _alertifyService: AlertifyService) { }
 
   ngOnInit(): void {
-    this._route.paramMap.subscribe(params =>{
-      let id = params.get('id');
-      this.id = id == null ? 0 : +id;
+    this.child = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      age: 0,
+      photo: ''
+    };
+    this.createForm();
 
-      this.isEditMode = this.id > 0;
+    this._route.paramMap.subscribe(params =>{
+      const id = params.get('id');
+      const childId = id == null ? 0 : +id;
+
+      this.isEditMode = childId > 0;
 
       this.title = this.isEditMode ? 'Edit Child' : 'Add Child';
       this.buttonText = this.isEditMode ? 'Save changes' : 'Add Child';
+
+      if (this.isEditMode){
+        this._childrenService.getById(childId).subscribe(response =>{
+          this.child = response;
+          this.createForm();
+          console.log(this.child);
+        })
+      }
     } )
   }
 
   public back(){
     this._router.navigate(['admin', 'children']);
- }
+  }
 
- saveChanges() {
-  if (this.ChildAdminForm.valid) {
-   console.log(this.ChildAdminForm.value);}
-   else console.log('not good');
-}
+  saveChanges() {
+    console.log(this.form)
+    if (this.form.valid) {
+      const updatedChild : Child = {
+        id: this.child.id,
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        age: +this.form.value.age,
+        photo: this.form.value.photo
+      };
+      this._childrenService.addOrDelete(updatedChild).subscribe(data => {
+        if(data > 0){
+          this._alertifyService.success(this.isEditMode ? 'The child details were successfully updated!': 'The child was successfully added');
+          this._router.navigate(['admin', 'children']);
+        }
+        else {
+          this._alertifyService.error('An error has occured. Please try again later!');
+        }
+      });
+    }
+  } 
+    
+
+
+  private createForm(){
+    this.form = new FormGroup({
+      firstName: new FormControl(this.child.firstName, Validators.required),
+      lastName: new FormControl(this.child.lastName, Validators.required),
+      age: new FormControl(this.child.age > 0 ? String(this.child.age) : '', Validators.required),
+      photo: new FormControl(this.child.photo)
+    });
+  }
 
 }

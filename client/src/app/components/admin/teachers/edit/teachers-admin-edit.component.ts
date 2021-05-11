@@ -81,7 +81,7 @@ export class TeachersAdminEditComponent implements OnInit {
 
   private createForm(){
     this.form = new FormGroup({
-      firstName: new FormControl(this.teacher.firstName, [Validators.required, Validators.maxLength(10), Validators.minLength(5)]),
+      firstName: new FormControl(this.teacher.firstName, Validators.required),
       lastName: new FormControl(this.teacher.lastName, Validators.required),
       status: new FormControl(this.teacher.isActive ? "1" : "0", Validators.required),
       photo: new FormControl(this.teacher.photo),

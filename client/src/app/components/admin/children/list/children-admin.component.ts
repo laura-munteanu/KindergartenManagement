@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GridOptions } from 'ag-grid-community';
-import { ChildrenService } from 'src/app/services';
+import { AlertifyService, ChildrenService } from 'src/app/services';
 import { ChildrenAdminActionsComponent } from './cell/children-admin-actions/children-admin-actions.component';
 
 @Component({
@@ -16,7 +16,10 @@ export class ChildrenAdminComponent implements OnInit {
   public lstColumns: any;
   public lstChildren = [];
 
-  constructor(private _router: Router, private _childrenService: ChildrenService) { }
+  constructor(
+    private _router: Router, 
+    private _childrenService: ChildrenService,
+    private _alertifyService: AlertifyService){ }
 
   ngOnInit(): void {
     this.setGridColumns();
@@ -33,7 +36,12 @@ export class ChildrenAdminComponent implements OnInit {
   }
 
   public deleteChild(id: number, name: string){
-    //todo: show modal with confirmation; after confirmation send delete request to server with the id
+    this._alertifyService.confirm(`Are you sure you want to delete the following child?<br/><b><i>${name}</i></b>`, ()=>{
+      this._childrenService.delete(id).subscribe(data => {
+        this._alertifyService.success('The Child was successfully deleted');
+        this.getData();
+    });
+  });
 
   }
 
