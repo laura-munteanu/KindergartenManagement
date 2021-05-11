@@ -27,6 +27,6 @@ export class GroupsAdminActionsComponent implements ICellRendererAngularComp {
   }
 
   deleteCellChildrenGroup() {
-    this.params.context.componentParent.deleteChildrenGroup(this.params.data.id, `${this.params.data.firstName} ${this.params.data.lastName}`);
+    this.params.context.componentParent.deleteChildrenGroup(this.params.data.id, this.params.data.groupName);
   }
 }

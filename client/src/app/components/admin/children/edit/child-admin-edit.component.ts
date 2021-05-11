@@ -57,10 +57,9 @@ export class ChildAdminEditComponent implements OnInit {
         this._childrenService.getById(childId).subscribe(response =>{
           this.child = response;
           this.createForm();
-          console.log(this.child);
         })
       }
-    } )
+    })
   }
 
   public back(){
@@ -68,7 +67,6 @@ export class ChildAdminEditComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log(this.form)
     if (this.form.valid) {
       const updatedChild : Child = {
         id: this.child.id,
@@ -77,8 +75,8 @@ export class ChildAdminEditComponent implements OnInit {
         age: +this.form.value.age,
         photo: this.form.value.photo
       };
-      this._childrenService.addOrDelete(updatedChild).subscribe(data => {
-        if(data > 0){
+      this._childrenService.addOrDelete(updatedChild).subscribe(response => {
+        if(response > 0){
           this._alertifyService.success(this.isEditMode ? 'The child details were successfully updated!': 'The child was successfully added');
           this._router.navigate(['admin', 'children']);
         }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GridOptions } from 'ag-grid-community';
-import { GroupsService } from 'src/app/services';
+import { AlertifyService, GroupsService } from 'src/app/services';
 
 import { GroupsAdminActionsComponent } from './cell/groups-admin-actions.component';
 
@@ -17,7 +17,10 @@ export class GroupsAdminComponent implements OnInit {
 
   public lstChildrenGroups = [];
 
-  constructor(private _route: Router, private _groupsService: GroupsService) { }
+  constructor(
+    private _route: Router, 
+    private _groupsService: GroupsService,
+    private _alertifyService: AlertifyService) { }
 
   ngOnInit(): void {
     this.setGridColumns();
@@ -34,7 +37,12 @@ export class GroupsAdminComponent implements OnInit {
   }
 
   deleteChildrenGroup(id:number, name: string){
-    //todo: show modal with confirmation; after confirmation send delete request to server with the id
+    this._alertifyService.confirm(`Are you sure you want to delete the following group?<br/><b><i>${name}</i></b>`,()=>{
+      this._groupsService.delete(id).subscribe(data =>{
+        this._alertifyService.success('the group was successfully deleted');
+        this.getData();
+      });
+    });
   }
 
 

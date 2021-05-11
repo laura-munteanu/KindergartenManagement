@@ -19,7 +19,7 @@ export class ChildrenService {
   }
 
   addOrDelete(child: Child) : Observable<any>{
-    const headers = { 'content-type': 'application/json'};
+    const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(child);
     
     return child.id > 0 ? this._http.put(this.url, body, { headers }) : this._http.post(this.url, body, { headers }); 
