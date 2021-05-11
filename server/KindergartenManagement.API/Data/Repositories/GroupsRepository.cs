@@ -14,23 +14,19 @@ namespace KindergartenManagement.API.Data.Repositories
         {
             _dbContext = dbContext;
         }
-        public long AddOrUpdate(Group childrenGroup)
+
+        public long Add(Group group)
         {
-            if(childrenGroup.Id > 0)
-            {
-                //update
-                _dbContext.Update(childrenGroup);
-
-            }
-            else
-            {
-                //insert
-                _dbContext.Add(childrenGroup);
-            }
+            _dbContext.Add(group);
             _dbContext.SaveChanges();
-            return childrenGroup.Id;
+            return group.Id;
         }
-
+        public long Update(Group group) 
+        {
+            _dbContext.Update(group);
+            _dbContext.SaveChanges();
+            return group.Id;
+        }
         public void Delete(long id)
         {
             var existingGroup = GetById(id);
@@ -41,23 +37,19 @@ namespace KindergartenManagement.API.Data.Repositories
                 _dbContext.SaveChanges();
             }
         }
-
         public Group GetById(long id)
         {
             var Group = _dbContext.Groups
                 .Where(x => x.Id == id && x.IsDeleted == false)
                 .SingleOrDefault();
             return Group;
-
         }
-
         public List<Group> GetList()
         {
             var Groups = _dbContext.Groups
                 .Where(x => x.IsDeleted == false)
                 .ToList();
             return Groups;
-
         }
     }
 }
