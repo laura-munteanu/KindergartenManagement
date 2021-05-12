@@ -10,7 +10,8 @@ namespace KindergartenManagement.API.Data.Repositories
     {
         List<Activity> GetList();
         Activity GetById(long id);
-        long AddOrUpdate(Activity activity);
+        long Add(Activity activity); 
+        long Update(Activity activity); 
         void Delete(long id);
     }
 }

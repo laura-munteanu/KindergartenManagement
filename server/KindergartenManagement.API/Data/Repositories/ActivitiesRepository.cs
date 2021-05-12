@@ -14,20 +14,32 @@ namespace KindergartenManagement.API.Data.Repositories
         {
             _dbContext = dbContext;
         }
-        public long AddOrUpdate(Activity activity)
+        public List<Activity> GetList()
         {
-            if (activity.Id > 0)
-            {
-                _dbContext.Update(activity);
-            }
-            else
-            {
-                _dbContext.Activities.Add(activity);
-            }
+            var activities = _dbContext.Activities
+                .Where(x => x.IsDeleted == false)
+                .ToList();
+            return activities;
+        }
+        public Activity GetById(long id)
+        {
+            var activity = _dbContext.Activities
+               .Where(x => x.Id == id && x.IsDeleted == false)
+               .SingleOrDefault();
+            return activity;
+        }
+        public long Add(Activity activity)
+        {
+            _dbContext.Activities.Add(activity);
             _dbContext.SaveChanges();
             return activity.Id;
         }
-
+        public long Update(Activity activity)
+        {
+            _dbContext.Update(activity);
+            _dbContext.SaveChanges();
+            return activity.Id;
+        }
         public void Delete(long id)
         {
             var existingActivity = GetById(id);
@@ -37,22 +49,6 @@ namespace KindergartenManagement.API.Data.Repositories
                 _dbContext.Update(existingActivity);
                 _dbContext.SaveChanges();
             }
-        }
-
-        public Activity GetById(long id)
-        {
-            var activity = _dbContext.Activities
-               .Where(x => x.Id == id && x.IsDeleted == false)
-               .SingleOrDefault();
-            return activity;
-        }
-
-        public List<Activity> GetList()
-        {
-            var activities = _dbContext.Activities
-                .Where(x => x.IsDeleted == false)
-                .ToList();
-            return activities;
         }
     }
 }
