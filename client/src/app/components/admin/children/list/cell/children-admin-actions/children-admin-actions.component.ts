@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
@@ -21,7 +21,6 @@ export class ChildrenAdminActionsComponent implements ICellRendererAngularComp {
 
   editCellChild() {
     this.params.context.componentParent.editChild(this.params.data.id);
-
   }
 
   deleteCellChild() {

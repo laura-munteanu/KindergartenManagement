@@ -18,7 +18,7 @@ export class ChildrenService {
     return this._http.get(this.url +'/'+ id);  
   }
 
-  addOrDelete(child: Child) : Observable<any>{
+  addOrUpdate(child: Child) : Observable<any>{
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(child);
     

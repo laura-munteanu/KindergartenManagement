@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  TeachersAdminComponent,
+  ActivitiesAdminComponent,
+  ActivityAdminEditComponent,
+  CalendarComponent,
+  ChildAdminEditComponent,
   ChildrenAdminComponent,
   DashboardComponent,
-  CalendarComponent,
-  TeachersAdminEditComponent,
-  ChildAdminEditComponent,
   GroupsAdminComponent,
   GroupAdminEditComponent,
+  TeachersAdminComponent,
+  TeachersAdminEditComponent,
+
 } from './components/index';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'admin/activities',
+    component: ActivitiesAdminComponent
   },
   {
-    path: 'admin/teachers',
-    component: TeachersAdminComponent
-  },
-  {
-    path: 'admin/teachers/edit/:id',
-    component: TeachersAdminEditComponent
+    path: 'admin/activities/edit/:id',
+    component: ActivityAdminEditComponent
   },
   {
     path: 'admin/children',
@@ -41,9 +40,20 @@ const routes: Routes = [
     component: GroupAdminEditComponent
   },
   {
+    path: 'admin/teachers',
+    component: TeachersAdminComponent
+  },
+  {
+    path: 'admin/teachers/edit/:id',
+    component: TeachersAdminEditComponent
+  },
+  {
     path: 'calendar',
     component: CalendarComponent,
-
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: '',

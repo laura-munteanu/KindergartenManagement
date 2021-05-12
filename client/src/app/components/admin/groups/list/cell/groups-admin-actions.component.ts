@@ -23,7 +23,6 @@ export class GroupsAdminActionsComponent implements ICellRendererAngularComp {
 
   editCellChildrenGroup() {
     this.params.context.componentParent.editChildrenGroup(this.params.data.id);
-
   }
 
   deleteCellChildrenGroup() {

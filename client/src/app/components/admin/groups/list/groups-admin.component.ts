@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GridOptions } from 'ag-grid-community';
 import { AlertifyService, GroupsService } from 'src/app/services';
+import { GroupScheduleComponent } from './cell/group-schedule.component';
 
 import { GroupsAdminActionsComponent } from './cell/groups-admin-actions.component';
 
@@ -45,6 +46,10 @@ export class GroupsAdminComponent implements OnInit {
     });
   }
 
+  openGroupSchedule(id: number) {
+    this._route.navigate(['dashboard']);
+  }
+
 
   private setGridColumns(){
     this.lstColumns = [
@@ -52,7 +57,17 @@ export class GroupsAdminComponent implements OnInit {
         headerName: 'Group Name'
       },
       { 
-        headerName: 'Actions',
+        headerName: 'Responsible Teacher'
+      },
+      { 
+        headerName: 'Number Students'
+      },
+      { 
+        headerName: 'Schedule',
+        cellRendererFramework: GroupScheduleComponent,
+
+      },
+      { headerName: 'Actions',
         cellRendererFramework: GroupsAdminActionsComponent,
         width: 200,
         sortable: false
@@ -65,7 +80,7 @@ export class GroupsAdminComponent implements OnInit {
       defaultColDef: {
         resizable: true,
         sortable: true,
-        width: 150,
+        width: 200,
         filterParams: {selectAllOnMiniFilter: true}
       },
       context: {
