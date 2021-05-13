@@ -88,5 +88,5 @@ export class ActivitiesAdminComponent implements OnInit {
       console.log(this.lstActivities);
     })
   }
-
+  
 }

@@ -3,5 +3,6 @@ export interface Child {
   firstName: string,
   lastName: string,
   age: number,
+  groupId: number,
   photo: '';
 }

@@ -9,7 +9,7 @@ namespace KindergartenManagement.API.Data.Entities
     {
         public long Id { get; set; }
         public string ActivityName { get; set; }
-        public bool InKindergarden { get; set; }
+        public bool InKindergarten { get; set; } 
         public bool IsDeleted { get; set; }
     }
 }

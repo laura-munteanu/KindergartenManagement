@@ -20,9 +20,17 @@
             <label for="ageChild">Age</label>
             <select class="form-control" formControlName="age" id="ageChild" placeholder>
               <option value="">Select Child's age</option>
-              <option *ngFor="let age of ageRange" [value]="age.value">{{age.label}}</option>
+              <option *ngFor="let age of lstAge" [value]="age.value">{{age.label}}</option>
             </select>
             <div class="validation-error" *ngIf="form.get('age')?.invalid && form.get('age')?.touched && form.get('age')?.errors?.required">Age is mandatory</div>
+          </div>
+          <div class="form-group" [ngClass]="{error: form.get('groupId')?.invalid && form.get('groupId')?.touched}">
+            <label for="groupId">Group</label>
+            <select class="form-control" formControlName="groupId" id="groupId">
+              <option value="">Select a group</option>
+              <option *ngFor="let group of ChildrenGroupId" [value]="group.id">{{group.groupName}}</option>
+            </select>
+            <div class="validation-error" *ngIf="form.get('groupId')?.invalid && form.get('groupId')?.touched && form.get('groupId')?.errors?.required">Group is mandatory</div>
           </div>
         </div>
       </div>

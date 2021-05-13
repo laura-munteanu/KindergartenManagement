@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Child } from 'src/app/models';
-import { AlertifyService, ChildrenService } from 'src/app/services';
+import { AlertifyService, ChildrenService, GroupsService } from 'src/app/services';
 
 
 @Component({
@@ -19,19 +19,20 @@ export class ChildAdminEditComponent implements OnInit {
   public form: FormGroup;
   public child: Child;
 
-  public ageRange=[
-    // {value: '', label: 'Select age'},
+  public lstAge = [
     {value: '3', label: '3'},
     {value: '4', label: '4'},
     {value: '5', label: '5'},
     {value: '6', label: '6'}
-  ] 
- 
+  ];
+  
+  public ChildrenGroupId: any;
 
   constructor(
     private _router: Router, 
     private _route: ActivatedRoute,
     private _childrenService: ChildrenService,
+    private _groupsService: GroupsService,
     private _alertifyService: AlertifyService) { }
 
   ngOnInit(): void {
@@ -40,9 +41,12 @@ export class ChildAdminEditComponent implements OnInit {
       firstName: '',
       lastName: '',
       age: 0,
+      groupId: 0,
       photo: ''
     };
     this.createForm();
+
+    this.getGroupId();
 
     this._route.paramMap.subscribe(params =>{
       const id = params.get('id');
@@ -73,6 +77,7 @@ export class ChildAdminEditComponent implements OnInit {
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
         age: +this.form.value.age,
+        groupId: +this.form.value.groupId,
         photo: this.form.value.photo
       };
       this._childrenService.addOrUpdate(updatedChild).subscribe(response => {
@@ -86,15 +91,20 @@ export class ChildAdminEditComponent implements OnInit {
       });
     }
   } 
-    
-
 
   private createForm(){
     this.form = new FormGroup({
       firstName: new FormControl(this.child.firstName, Validators.required),
       lastName: new FormControl(this.child.lastName, Validators.required),
       age: new FormControl(this.child.age > 0 ? String(this.child.age) : '', Validators.required),
+      groupId: new FormControl(this.child.groupId > 0 ? String(this.child.groupId) : '',  Validators.required),
       photo: new FormControl(this.child.photo)
+    });
+  }
+
+  private getGroupId(){
+    this._groupsService.getList().subscribe(data => {
+    this.ChildrenGroupId = data;
     });
   }
 
