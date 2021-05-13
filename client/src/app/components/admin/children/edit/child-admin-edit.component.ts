@@ -58,8 +58,8 @@ export class ChildAdminEditComponent implements OnInit {
       this.buttonText = this.isEditMode ? 'Save changes' : 'Add Child';
 
       if (this.isEditMode){
-        this._childrenService.getById(childId).subscribe(response =>{
-          this.child = response;
+        this._childrenService.getById(childId).subscribe(data =>{
+          this.child = data;
           this.createForm();
         })
       }
@@ -80,8 +80,8 @@ export class ChildAdminEditComponent implements OnInit {
         groupId: +this.form.value.groupId,
         photo: this.form.value.photo
       };
-      this._childrenService.addOrUpdate(updatedChild).subscribe(response => {
-        if(response > 0){
+      this._childrenService.addOrUpdate(updatedChild).subscribe(data => {
+        if(data > 0){
           this._alertifyService.success(this.isEditMode ? 'The child details were successfully updated!': 'The child was successfully added');
           this._router.navigate(['admin', 'children']);
         }

@@ -46,11 +46,11 @@ export class TeachersAdminEditComponent implements OnInit {
       this.buttonText = this.isEditMode ? 'Save changes' : 'Add Teacher';
 
       if (this.isEditMode){
-        this._teachersService.getById(teacherId).subscribe(response => {
-          this.teacher = response;
+        this._teachersService.getById(teacherId).subscribe(data => {
+          this.teacher = data;
           this.createForm();
         });
-      }
+      };
    });
   }
 

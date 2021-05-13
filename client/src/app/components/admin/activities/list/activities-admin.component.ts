@@ -44,10 +44,10 @@ export class ActivitiesAdminComponent implements OnInit {
     this.lstColumns = [
       {
         field: 'activityName',
-        headerName: 'Event Name'
+        headerName: 'Activity'
       },
       {
-        headerName: 'In Kindergarten',
+        headerName: 'Location',
         valueGetter: (params: any) => params.data.inKindergarten ? 'in kindergarten' : 'outside the kindergarten',
         width: 200,
       },
@@ -85,7 +85,6 @@ export class ActivitiesAdminComponent implements OnInit {
   private getData(){
     this._activitiesService.getList().subscribe(data => {
       this.lstActivities = data;
-      console.log(this.lstActivities);
     })
   }
   

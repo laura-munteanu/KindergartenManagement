@@ -5,4 +5,7 @@ export interface Child {
   age: number,
   groupId: number,
   photo: '';
+
+  groupName?: string;
+
 }

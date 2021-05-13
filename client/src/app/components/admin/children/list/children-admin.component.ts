@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GridOptions } from 'ag-grid-community';
-import { ChildrenGroup } from 'src/app/models';
+import { Child, ChildrenGroup } from 'src/app/models';
 import { AlertifyService, ChildrenService, GroupsService } from 'src/app/services';
 import { ChildrenAdminActionsComponent } from './cell/children-admin-actions/children-admin-actions.component';
 
@@ -15,7 +15,7 @@ import { ChildrenAdminActionsComponent } from './cell/children-admin-actions/chi
 export class ChildrenAdminComponent implements OnInit {
   public gridOptions: any = {};
   public lstColumns: any;
-  public lstChildren = [];
+  public lstChildren: Child[] = [];
 
   private childrenGroups: ChildrenGroup[] = [];
 
@@ -67,15 +67,8 @@ export class ChildrenAdminComponent implements OnInit {
         headerName: 'Age'
       },
       {
-         field: 'group',
+         field: 'groupName',
         headerName: 'Group',
-        valueGetter: (params: any) => {
-          const obj = this.childrenGroups.find((item: any) => item.id == params.data.groupId);
-          if (obj) {
-              return obj.groupName;
-           }
-          return '';
-        }
       },
       { 
         headerName: 'Actions',
@@ -111,7 +104,11 @@ export class ChildrenAdminComponent implements OnInit {
   private getData(){
     this._childrenService.getList().subscribe(data => {
       this.lstChildren = data;
-    })
+      for (let i = 0; i < this.lstChildren.length; i++){
+        const obj = this.childrenGroups.find(group => group.id == this.lstChildren[i].groupId);
+        this.lstChildren[i].groupName = obj ? obj.groupName : '';
+      }
+    });
   } 
 
   private getGroups(){
