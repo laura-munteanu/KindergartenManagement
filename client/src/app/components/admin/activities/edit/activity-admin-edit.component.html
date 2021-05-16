@@ -7,9 +7,9 @@
         </div>
         <div class="card-body bg-secondary">
             <div class="form-group" [ngClass]="{error: form.get('activityName')?.invalid && form.get('activityName')?.touched}">
-              <label for="activityName">Activity Name</label>
-              <input type="text" class="form-control" formControlName="activityName" id="activityName" placeholder="Activity Name">
-              <div class="validation-error" *ngIf="form.get('activityName')?.invalid && form.get('activityName')?.touched && form.get('activityName')?.errors?.required">Activity name is mandatory</div>
+              <label for="activityName">Name</label>
+              <input type="text" class="form-control" formControlName="activityName" id="activityName" placeholder="Name">
+              <div class="validation-error" *ngIf="form.get('activityName')?.invalid && form.get('activityName')?.touched && form.get('activityName')?.errors?.required">Name is mandatory</div>
             </div>
             <div class="form-group" [ngClass]="{error: form.get('location')?.invalid && form.get('location')?.touched}">
               <label class="custom-toggle" style="width: 100px;">Location</label>
@@ -24,12 +24,12 @@
               <div class="validation-error" *ngIf="form.get('location')?.invalid && form.get('location')?.touched">The location is mandatory!</div>
             </div>
             <div class="form-group" style="width: 200px;" [ngClass]="{error: form.get('activityColor')?.invalid && form.get('activityColor')?.touched}">
-              <label for="activityColor">Activity Color</label>
+              <label for="activityColor">Color</label>
               <select class="form-control" style="height:45px;" formControlName="activityColor" id="activityColor" placeholder>
-                <option value="">Select Activity's color</option>
+                <option value="">Select color</option>
                 <option *ngFor="let color of lstColor" [value]="color.value">{{color.label}}</option>
               </select>
-              <div class="validation-error" *ngIf="form.get('activityColor')?.invalid && form.get('activityColor')?.touched && form.get('activityColor')?.errors?.required">Activity Color is mandatory</div>
+              <div class="validation-error" *ngIf="form.get('activityColor')?.invalid && form.get('activityColor')?.touched && form.get('activityColor')?.errors?.required">Color is mandatory</div>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success" (click)="saveChanges()" [disabled]="form.invalid">{{buttonText}}</button>

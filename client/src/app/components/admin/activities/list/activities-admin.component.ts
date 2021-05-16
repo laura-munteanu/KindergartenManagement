@@ -17,6 +17,15 @@ export class ActivitiesAdminComponent implements OnInit {
   public lstColumns: any;
   public lstActivities = [];
 
+  public lstColor = [
+    {value: '#ebe534', label: 'yellow'},
+    {value: '#eb8c34', label: 'orange'},
+    {value: '#eb3434', label: 'red'},
+    {value: '#34eb43', label: 'green'},
+    {value: '#4334eb', label: 'blue'},
+    {value: '#d61ac0', label: 'purple'}
+  ];
+
   constructor(
     private _activitiesService: ActivitiesService,
     private _router: Router,
@@ -52,9 +61,23 @@ export class ActivitiesAdminComponent implements OnInit {
         width: 200,
       },
       {
-        field: 'activityColor',
+        field: 'colorValue',
         headerName: 'Color',
-        width: 200,
+        valueGetter: (params: any) => {
+          const obj = this.lstColor.find((item: any) => item.value == params.data.activityColor);
+          if (obj) {
+            return obj.label;
+          }
+          return '';
+        },
+        cellStyle: (params: any) => {
+          const obj = this.lstColor.find((item: any) => item.value == params.data.activityColor);
+          if (obj) {
+            return {color: 'black', backgroundColor: obj.label};
+          }
+          return null;
+      },
+        width: 150,
       },
       { 
         headerName: 'Actions',
@@ -90,7 +113,6 @@ export class ActivitiesAdminComponent implements OnInit {
   private getData(){
     this._activitiesService.getList().subscribe(data => {
       this.lstActivities = data;
-    })
+    });
   }
-  
 }
