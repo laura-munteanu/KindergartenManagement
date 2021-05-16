@@ -19,6 +19,15 @@ export class ActivityAdminEditComponent implements OnInit {
   public form: FormGroup;
   public activity: Activity;
 
+  public lstColor = [
+    {value: '#ebe534', label: 'yellow'},
+    {value: '#eb8c34', label: 'orange'},
+    {value: '#eb3434', label: 'red'},
+    {value: '#34eb43', label: 'green'},
+    {value: '#4334eb', label: 'blue'},
+    {value: '#d61ac0', label: 'purple'}
+  ];
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -29,7 +38,8 @@ export class ActivityAdminEditComponent implements OnInit {
     this.activity = {
       id: 0,
       activityName: '',
-      inKindergarten: true
+      inKindergarten: true,
+      activityColor: ''
     };
 
     this.createForm();
@@ -63,6 +73,7 @@ export class ActivityAdminEditComponent implements OnInit {
         id: this.activity.id,
         activityName: this.form.value.activityName,
         inKindergarten: this.form.value.location == '1' ? true : false,
+        activityColor: this.form.value.activityColor
       };
       this._activitiesService.AddorUpdate(updatedActivity).subscribe(data =>{
         if(data > 0){
@@ -79,8 +90,8 @@ export class ActivityAdminEditComponent implements OnInit {
   private createForm(){
     this.form = new FormGroup({
      activityName: new FormControl(this.activity.activityName, Validators.required),
-     location: new FormControl(this.activity.inKindergarten ? '1' : '0', Validators.required), 
-    })
+     location: new FormControl(this.activity.inKindergarten ? '1' : '0', Validators.required),
+     activityColor: new FormControl(this.activity.activityColor, Validators.required)
+    });
   }
-
 }

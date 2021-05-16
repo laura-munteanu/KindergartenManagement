@@ -1,5 +1,6 @@
 export interface Activity {
   id: number,
   activityName: string,
-  inKindergarten: boolean
+  inKindergarten: boolean,
+  activityColor: string
 }

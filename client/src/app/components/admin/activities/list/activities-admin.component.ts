@@ -51,6 +51,11 @@ export class ActivitiesAdminComponent implements OnInit {
         valueGetter: (params: any) => params.data.inKindergarten ? 'in kindergarten' : 'outside the kindergarten',
         width: 200,
       },
+      {
+        field: 'activityColor',
+        headerName: 'Color',
+        width: 200,
+      },
       { 
         headerName: 'Actions',
         cellRendererFramework: ActivitiesAdminActionsComponent,
