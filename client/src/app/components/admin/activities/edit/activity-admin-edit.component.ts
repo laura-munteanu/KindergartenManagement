@@ -23,7 +23,7 @@ export class ActivityAdminEditComponent implements OnInit {
     {value: '#ebe534', label: 'yellow'},
     {value: '#eb8c34', label: 'orange'},
     {value: '#eb3434', label: 'red'},
-    {value: '#34eb43', label: 'green'},
+    {value: '#28ed43', label: 'green'},
     {value: '#4334eb', label: 'blue'},
     {value: '#d61ac0', label: 'purple'}
   ];

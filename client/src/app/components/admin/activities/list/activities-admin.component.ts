@@ -21,7 +21,7 @@ export class ActivitiesAdminComponent implements OnInit {
     {value: '#ebe534', label: 'yellow'},
     {value: '#eb8c34', label: 'orange'},
     {value: '#eb3434', label: 'red'},
-    {value: '#34eb43', label: 'green'},
+    {value: '#28ed43', label: 'green'},
     {value: '#4334eb', label: 'blue'},
     {value: '#d61ac0', label: 'purple'}
   ];
@@ -73,7 +73,7 @@ export class ActivitiesAdminComponent implements OnInit {
         cellStyle: (params: any) => {
           const obj = this.lstColor.find((item: any) => item.value == params.data.activityColor);
           if (obj) {
-            return {color: 'black', backgroundColor: obj.label};
+            return {color: 'black', backgroundColor: obj.value};
           }
           return null;
       },
