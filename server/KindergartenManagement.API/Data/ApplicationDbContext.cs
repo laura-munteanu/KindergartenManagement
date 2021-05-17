@@ -23,5 +23,6 @@ namespace KindergartenManagement.API.Data
         public DbSet<Child> Children { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Schedule> Schedules { get; set; } 
     }
 }
