@@ -12,6 +12,6 @@ namespace KindergartenManagement.API.Data.Repositories
         Schedule GetById(long id);
         long Add(Schedule schedule);
         long Update(Schedule schedule); 
-        void Delete(long id);
+        bool Delete(long id);
     }
 }

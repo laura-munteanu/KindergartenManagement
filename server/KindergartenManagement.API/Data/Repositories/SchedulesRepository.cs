@@ -16,12 +16,21 @@ namespace KindergartenManagement.API.Data.Repositories
         }
         public long Add(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _dbContext.Schedules.Add(schedule);
+            _dbContext.SaveChanges();
+            return schedule.Id;
         }
 
-        public void Delete(long id)
+        public bool Delete(long id)
         {
-            throw new NotImplementedException();
+            var existingSchedule = GetById(id);
+            if (existingSchedule != null)
+            {
+                _dbContext.Remove(existingSchedule);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public Schedule GetById(long id)
@@ -34,12 +43,19 @@ namespace KindergartenManagement.API.Data.Repositories
 
         public List<Schedule> GetList(long groupId, DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            {
+                var schedules = _dbContext.Schedules
+                    .Where(x => x.GroupId == groupId && startTime <= x.StartTime && x.StartTime < endTime)
+                    .ToList();
+                return schedules;
+            }
         }
 
         public long Update(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _dbContext.Schedules.Update(schedule);
+            _dbContext.SaveChanges();
+            return schedule.Id;
         }
     }
 }
