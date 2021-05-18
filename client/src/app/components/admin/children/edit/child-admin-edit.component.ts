@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Child } from 'src/app/models';
+import { Child, ChildrenGroup } from 'src/app/models';
 import { AlertifyService, ChildrenService, GroupsService } from 'src/app/services';
 
 
@@ -26,7 +26,7 @@ export class ChildAdminEditComponent implements OnInit {
     {value: '6', label: '6'}
   ];
   
-  public ChildrenGroupId: any;
+  public childrenGroups: ChildrenGroup[] = [];
 
   constructor(
     private _router: Router, 
@@ -104,7 +104,7 @@ export class ChildAdminEditComponent implements OnInit {
 
   private getGroupId(){
     this._groupsService.getList().subscribe(data => {
-    this.ChildrenGroupId = data;
+    this.childrenGroups = data;
     });
   }
 

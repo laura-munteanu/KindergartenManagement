@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   ActivitiesAdminComponent,
   ActivityAdminEditComponent,
-  CalendarComponent,
   ChildAdminEditComponent,
   ChildrenAdminComponent,
   DashboardComponent,
@@ -11,6 +10,8 @@ import {
   GroupAdminEditComponent,
   TeachersAdminComponent,
   TeachersAdminEditComponent,
+  ScheduleTemplateAdminComponent,
+  ScheduleGroupAdminComponent,
 
 } from './components/index';
 
@@ -40,16 +41,20 @@ const routes: Routes = [
     component: GroupAdminEditComponent
   },
   {
+    path: 'admin/schedule',
+    component: ScheduleTemplateAdminComponent
+  },
+  {
+    path: 'admin/schedule/:groupId',
+    component: ScheduleGroupAdminComponent
+  },
+  {
     path: 'admin/teachers',
     component: TeachersAdminComponent
   },
   {
     path: 'admin/teachers/edit/:id',
     component: TeachersAdminEditComponent
-  },
-  {
-    path: 'calendar',
-    component: CalendarComponent,
   },
   {
     path: 'dashboard',

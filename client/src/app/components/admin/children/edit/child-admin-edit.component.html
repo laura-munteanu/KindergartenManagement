@@ -28,7 +28,7 @@
             <label for="groupId">Group</label>
             <select class="form-control" formControlName="groupId" id="groupId">
               <option value="">Select a group</option>
-              <option *ngFor="let group of ChildrenGroupId" [value]="group.id">{{group.groupName}}</option>
+              <option *ngFor="let group of childrenGroups" [value]="group.id">{{group.groupName}}</option>
             </select>
             <div class="validation-error" *ngIf="form.get('groupId')?.invalid && form.get('groupId')?.touched && form.get('groupId')?.errors?.required">Group is mandatory</div>
           </div>

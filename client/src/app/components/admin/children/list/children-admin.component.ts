@@ -111,7 +111,7 @@ export class ChildrenAdminComponent implements OnInit {
     });
   } 
 
-  private getGroups(){
+  public getGroups(){
     this._groupsService.getList().subscribe(data => {
       this.childrenGroups = data;
       this.getData();

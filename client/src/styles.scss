@@ -2,6 +2,11 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 $error-color: #d9230f;
+$primary-color: #5e72e4;
+$hover-color: rgba($primary-color, 0.80);
+$border-radius-tabs: 0.1rem;
+$color-tab-text: #000000;
+
 
 .ag-theme-alpine {
     /* use theme parameters where possible */
@@ -20,6 +25,12 @@ $error-color: #d9230f;
     min-height: 500px;
 }
 
+.nav-link-text {
+    font-weight: 700;
+    color: $primary-color;
+}
+
+
 /***********       ALERTIFY JS      ***********/
 .ajs-button.ajs-ok {
     color: #ffffff;
@@ -31,7 +42,7 @@ $error-color: #d9230f;
 }
   /**********      END ALERTIFY JS      *********/
 
-  
+  /**********      FORM GROUP      *********/
 .form-group.error {
 	color: $error-color;
 }
@@ -46,3 +57,20 @@ $error-color: #d9230f;
     font-style: italic;
     margin-top: 5px;
 }
+/**********      END FORM GROUP      *********/
+
+/**********      CHILDREN GROUPS TABS      *********/
+.children-group-tabs {
+    width: 100%;
+    color: $color-tab-text;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: $primary-color;
+    border: 1px solid #000000;
+    border-bottom: 0px;
+    border-radius: $border-radius-tabs;
+    &:hover {
+        background: $hover-color;
+    }
+}
+/**********      END CHILDREN GROUPS TABS      *********/

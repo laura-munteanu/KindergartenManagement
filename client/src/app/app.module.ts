@@ -22,10 +22,13 @@ import {
   GroupScheduleComponent,
   HeaderComponent,
   NavbarComponent,
+  ScheduleCalendarAdminComponent,
+  ScheduleGroupAdminComponent,
+  ScheduleGroupSelectionAdminComponent,
+  ScheduleTemplateAdminComponent,
   TeachersAdminComponent,
   TeachersAdminEditComponent,
   TeachersAdminActionsComponent,
-  
 } from './components/index';
 
 @NgModule({
@@ -46,6 +49,10 @@ import {
     GroupScheduleComponent,
     HeaderComponent,
     NavbarComponent,
+    ScheduleGroupSelectionAdminComponent,
+    ScheduleTemplateAdminComponent,
+    ScheduleGroupAdminComponent,
+    ScheduleCalendarAdminComponent,
     TeachersAdminComponent,
     TeachersAdminEditComponent,
     TeachersAdminActionsComponent,

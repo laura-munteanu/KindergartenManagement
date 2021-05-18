@@ -8,3 +8,4 @@ export * from './admin/activities';
 export * from './admin/children';
 export * from './admin/groups';
 export * from './admin/teachers';
+export * from './admin/schedule';
