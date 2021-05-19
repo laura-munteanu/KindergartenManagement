@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChildrenGroup } from 'src/app/models';
 import { GroupsService } from 'src/app/services';
 
@@ -15,20 +15,22 @@ export class ScheduleGroupSelectionAdminComponent implements OnInit {
 
   constructor(
     private _groupsService: GroupsService,
-    private _router: Router) { }
+    private _router: Router,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
-  public selectGroup(id: number){
-    this._router.navigate(['admin','schedule', id]);
+  public selectGroup(groupId: number){
+    
+    this._router.navigate(['admin','schedule', groupId]);
+
   }
 
   private getData(){
     this._groupsService.getList().subscribe(data => {
       this.childrenGroups = data;
-      console.log(this.childrenGroups);
     })
   }
 

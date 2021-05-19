@@ -12,6 +12,7 @@ import {
   TeachersAdminEditComponent,
   ScheduleTemplateAdminComponent,
   ScheduleGroupAdminComponent,
+  ScheduleCalendarAdminComponent,
 
 } from './components/index';
 
@@ -48,6 +49,7 @@ const routes: Routes = [
     path: 'admin/schedule/:groupId',
     component: ScheduleGroupAdminComponent
   },
+  
   {
     path: 'admin/teachers',
     component: TeachersAdminComponent
