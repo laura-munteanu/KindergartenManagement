@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,5 +12,13 @@ export class SchedulesService {
  
   getById(id: number): Observable<any> {
     return this._http.get(this.url + '/' + id);
+  }
+
+  getList(groupId: any, startTime: any, endTime: any): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('groupId', groupId);
+    params = params.append('startTime', startTime);
+    params = params.append('endTime', endTime);
+    return this._http.get(this.url,{params: params});
   }
 }

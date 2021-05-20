@@ -14,18 +14,20 @@ export class ScheduleCalendarAdminComponent implements OnInit {
 
   public form: FormGroup;
   public activitiesCalendar: any;
-  
+  public groupId: any;
   constructor(
     private _route: ActivatedRoute,
     private _schedulesService: SchedulesService) { }
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(params =>{
-      const id = params.get('id');
-      const scheduleId = id == null ? 0 : +id;
+      this.groupId = params.get('groupId');
+      const startTime = '2021-03-02T07:00:00';
+      const endTime = '2021-07-02T18:00:00';
 
-      this._schedulesService.getById(scheduleId).subscribe(data =>{
+      this._schedulesService.getList(this.groupId, startTime, endTime).subscribe(data =>{
         this.activitiesCalendar = data;
+        console.log('date recuperate pt grupa: ')
         console.log(this.activitiesCalendar);
       })
     })

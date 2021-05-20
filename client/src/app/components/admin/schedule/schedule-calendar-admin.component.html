@@ -1,9 +1,25 @@
-<div>
-  <p>{{activitiesCalendar.id}}}</p>
-  <p>schedule-calendar-admin works!</p>
+<!-- <div class="dailyScheduleHeader">
+  <p>{{groupId}}</p>
 </div>
-<div>
-  <p>schedule-calendar-admin works!</p>
-  <p>schedule-calendar-admin works!</p>
-  <p>schedule-calendar-admin works!</p>
+<div class="rowsDailySchedule" *ngFor="let activity of activitiesCalendar">
+  <p>Teacher: {{activity.teacherId}}</p>
+  <p>ActivityId: {{activity.activityId}}</p>
+  <div>Start Time: {{activity.startTime}}</div>
+  <div>End Time: {{activity.endTime}}</div>
+
+</div> -->
+
+<div class="custom-container">
+  <div class="row" style="background-color:yellow; margin:5px;">
+    <div class="col-md-4" >Time</div>
+    <div class="col-md-4" >Activity Name</div>
+    <div class="col-md-4" >Responsible Teacher</div>
+  </div>
+  <div class="row"  *ngFor="let activity of activitiesCalendar">
+    <div class="col-md-4" >{{activity.startTime}}</div>
+    <div class="col-md-4" >{{activity.activityId}}</div>
+    <div class="col-md-4" >{{activity.teacherId}}</div>
+
+  </div>
+
 </div>
