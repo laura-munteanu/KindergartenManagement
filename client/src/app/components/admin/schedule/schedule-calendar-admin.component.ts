@@ -15,6 +15,8 @@ export class ScheduleCalendarAdminComponent implements OnInit {
   public form: FormGroup;
   public activitiesCalendar: any;
   public groupId: any;
+  public intervalsOfTime = ['07:00', '07:30','08:00', '08:30','09:00', '09:30'];  
+
   constructor(
     private _route: ActivatedRoute,
     private _schedulesService: SchedulesService) { }
@@ -29,6 +31,7 @@ export class ScheduleCalendarAdminComponent implements OnInit {
         this.activitiesCalendar = data;
         console.log('date recuperate pt grupa: ')
         console.log(this.activitiesCalendar);
+        console.log(this.intervalsOfTime)
       })
     })
 

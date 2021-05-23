@@ -84,26 +84,34 @@ $color-tab-text: #ffffff;
 
 /**********      END CHILDREN GROUPS TABS      *********/
 
-.cell-schedule{
-    border:1px solid black;
-    background: lightblue;
-}
-
-.schedule-header{
-    border:1px solid black;
-    background: $primary-color;
-    height: 50px;
-
-
-}
-
-
-    
-  
+/**********      SCHEDULE      *********/
  
-  
+.schedule {
+    margin-top: 20px;
+
+    .schedule-row {
+        display: flex;
+    }
+
+    .schedule-cell {
+        color: #000000;
+        font-weight: 700;;
+        border:1px solid $primary-color;
+        height: 25px;
+    }
+    
+    .schedule-cell-time {
+        width: 100px;
+        text-align: center;
+    }
+    
+    .schedule-cell-activity {
+        flex-grow: 1;
+    }
+}  
 
   
+/**********      END SCHEDULE      *********/
   
   
   

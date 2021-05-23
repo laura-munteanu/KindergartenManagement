@@ -1,54 +1,15 @@
-<!-- <div class="dailyScheduleHeader">
-  <p>{{groupId}}</p>
+<div>
+  <button class="btn btn-default" style="float: right;">Weekly Schedule</button>
+  <button class="btn btn-default" style="float: right;">Daily Schedule</button>
 </div>
-<div class="rowsDailySchedule" *ngFor="let activity of activitiesCalendar">
-  <p>Teacher: {{activity.teacherId}}</p>
-  <p>ActivityId: {{activity.activityId}}</p>
-  <div>Start Time: {{activity.startTime}}</div>
-  <div>End Time: {{activity.endTime}}</div>
-
-</div> -->
-
-   <div class="d-flex">
-      <div class="d-flex flex-column bg-primary" style="width: 300px;">
-       <div class="schedule-header">Time</div>
-       <div class="cell-schedule">07.00</div>
-       <div class="cell-schedule">07.30</div>
-       <div class="cell-schedule">08.00</div>
-       <div class="cell-schedule">08.30</div>
-       <div class="cell-schedule">09.00</div>
-       <div class="cell-schedule">09.30</div>
-       <div class="cell-schedule">10.00</div>
-       <div class="cell-schedule">10.30</div>
-       <div class="cell-schedule">11.00</div>
-       <div class="cell-schedule">11.30</div>
-       <div class="cell-schedule">12.00</div>
-       <div class="cell-schedule">12.30</div>
-       <div class="cell-schedule">13.00</div>
-       <div class="cell-schedule">13.30</div>
-       <div class="cell-schedule">14.00</div>
-       <div class="cell-schedule">14.30</div>
-       <div class="cell-schedule">15.00</div>
-       <div class="cell-schedule">15.30</div>
-       <div class="cell-schedule">16.00</div>
-       <div class="cell-schedule">16.30</div>
-       <div class="cell-schedule">17.00</div>
-       <div class="cell-schedule">17.30</div>
-       <div class="cell-schedule">18.00</div>
-      </div>
-      <div class="d-flex flex-column" style="width: 300px;">
-        <div class="schedule-header">Activity Name</div>
-      </div>
-      <div class="d-flex flex-column" style="width: 300px;">
-        <div class="schedule-header">Responsible Teacher</div> 
-      </div>
-   </div>
- 
-
-
-
-<!-- <div class="d-flex p-2 bg-warning" *ngFor="let activity of activitiesCalendar">
-  <div class="d-flex p-2 bg-primary">{{activity.activityId}}</div>
-  <div class="d-flex p-2 bg-secondary">{{activity.teacherId}}</div>
-
-</div> -->
+<br />
+<div class="schedule">
+  <div class="schedule-row" *ngFor="let time of intervalsOfTime">
+    <div class="schedule-cell schedule-cell-time">{{time}}</div>
+    <div class="schedule-cell schedule-cell-activity"></div>
+    <!-- <div class="schedule-cell schedule-cell-activity"></div>
+    <div class="schedule-cell schedule-cell-activity"></div>
+    <div class="schedule-cell schedule-cell-activity"></div>
+    <div class="schedule-cell schedule-cell-activity"></div> -->
+  </div>
+</div>
