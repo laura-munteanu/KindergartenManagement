@@ -15,7 +15,10 @@ export class ScheduleCalendarAdminComponent implements OnInit {
   public form: FormGroup;
   public activitiesCalendar: any;
   public groupId: any;
-  public intervalsOfTime = ['07:00', '07:30','08:00', '08:30','09:00', '09:30'];  
+  public intervalsOfTime = ['07:00', '07:30','08:00', '08:30','09:00', '09:30'];
+  
+  public dailyMode: boolean = true;
+  public Days = ['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
 
   constructor(
     private _route: ActivatedRoute,

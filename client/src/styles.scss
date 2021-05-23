@@ -87,10 +87,14 @@ $color-tab-text: #ffffff;
 /**********      SCHEDULE      *********/
  
 .schedule {
-    margin-top: 20px;
-
+    // margin-top: 20px;
     .schedule-row {
         display: flex;
+    }
+    .schedule-header {
+        font-weight: 700;
+        background-color: $primary-color;
+        text-align: center;
     }
 
     .schedule-cell {

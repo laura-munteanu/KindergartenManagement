@@ -1,15 +1,25 @@
-<div>
-  <button class="btn btn-default" style="float: right;">Weekly Schedule</button>
-  <button class="btn btn-default" style="float: right;">Daily Schedule</button>
-</div>
-<br />
+
 <div class="schedule">
-  <div class="schedule-row" *ngFor="let time of intervalsOfTime">
-    <div class="schedule-cell schedule-cell-time">{{time}}</div>
-    <div class="schedule-cell schedule-cell-activity"></div>
-    <!-- <div class="schedule-cell schedule-cell-activity"></div>
-    <div class="schedule-cell schedule-cell-activity"></div>
-    <div class="schedule-cell schedule-cell-activity"></div>
-    <div class="schedule-cell schedule-cell-activity"></div> -->
+  <div class="schedule-row schedule-header" *ngIf="dailyMode">
+    <div class="schedule-cell schedule-cell-time">Time</div>
+    <div class="schedule-cell schedule-cell-activity">Activities</div>
+  </div>
+  <div class="schedule-row schedule-header" *ngIf="!dailyMode">
+    <div class="schedule-cell schedule-cell-time">Time</div>
+    <div class="schedule-cell schedule-cell-activity" *ngFor="let day of Days">{{day}}</div>
+  </div>
+
+  <div *ngIf="dailyMode">
+    <div class="schedule-row" *ngFor="let time of intervalsOfTime">
+      <div class="schedule-cell schedule-cell-time">{{time}}</div>
+      <div class="schedule-cell schedule-cell-activity"></div>
+    </div>
+  </div>
+
+  <div *ngIf="!dailyMode"> 
+    <div class="schedule-row" *ngFor="let time of intervalsOfTime">
+      <div class="schedule-cell schedule-cell-time">{{time}}</div>
+      <div class="schedule-cell schedule-cell-activity" *ngFor="let day of Days"></div>
+    </div>
   </div>
 </div>
