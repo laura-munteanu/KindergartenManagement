@@ -17,7 +17,7 @@ export class ScheduleCalendarAdminComponent implements OnInit {
   public groupId: any;
   public intervalsOfTime = ['07:00', '07:30','08:00', '08:30','09:00', '09:30'];
   
-  public dailyMode: boolean = true;
+  public dailyMode: boolean = false;
   public Days = ['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
 
   constructor(

@@ -112,9 +112,23 @@ $color-tab-text: #ffffff;
     .schedule-cell-activity {
         flex-grow: 1;
     }
+
+    
 }  
 
-  
+.schedule-btn {
+    margin-bottom: 10px;  
+    width: 100px;
+    height: 50px;
+} 
+
+.schedule-mode-btn {
+    margin-right: 10px; 
+    margin-bottom: 10px;  
+
+    width: 100px;
+    height: 50px;
+}
 /**********      END SCHEDULE      *********/
   
   

@@ -1,7 +1,13 @@
 <km-schedule-group-selection-admin></km-schedule-group-selection-admin>
-<div style="display: flex; justify-content:flex-end;">
-  <button class="btn btn-default" style="margin: 10px">Daily Schedule</button>
-  <button class="btn btn-default" style="margin: 10px">Weekly Schedule</button>
+<div style="display: flex; justify-content:space-between;">
+  <div class="btn-group">
+    <button class="btn btn-primary schedule-btn">Previous</button>
+    <button class="btn btn-primary schedule-btn">Current</button>
+    <button class="btn btn-primary schedule-btn">Next</button>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-default schedule-mode-btn">Daily Schedule</button>
+    <button class="btn btn-default schedule-mode-btn">Weekly Schedule</button>
+  </div>
 </div>
-
 <km-schedule-calendar-admin></km-schedule-calendar-admin>
