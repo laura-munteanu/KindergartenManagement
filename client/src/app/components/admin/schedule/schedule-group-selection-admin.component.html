@@ -1,9 +1,13 @@
-<div class="card bg-default" style="padding: 0;">
+<!-- <div class="card bg-default" style="padding: 0;">
   <div class="card-header bg-default border-0" style="padding: 0; margin: 5px;">
-  <div class="btn-group" style="display:flex" role="group" aria-label="Children Groups">
-    <button type="button" class="btn btn-sm children-group-tabs" *ngFor="let group of childrenGroups"
-    (click)="selectGroup(group.id)" routerLink="admin/schedule/group.id" routerLinkActive="active">{{group.groupName}}</button>
+    <div class="btn-group" style="display:flex;" role="group" aria-label="Children Groups">
+      <button type="button" class="btn btn-sm children-group-tabs" *ngFor="let group of childrenGroups"
+    (click)="selectGroup(group.id)" routerLink="admin/schedule/{{group.id}}" routerLinkActive="active">{{group.groupName}}</button>
+    </div>
   </div>
-  </div>
+</div> -->
 
+<div class="group-selection">
+    <div class="group-selection-btn" *ngFor="let group of childrenGroups"
+  (click)="selectGroup(group.id)" routerLink="/admin/schedule/{{group.id}}" routerLinkActive="active">{{group.groupName}}</div>
 </div>
