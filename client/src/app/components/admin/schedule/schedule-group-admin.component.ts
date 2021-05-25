@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'km-schedule-group-admin',
@@ -7,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class ScheduleGroupAdminComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
-
+  
 }
