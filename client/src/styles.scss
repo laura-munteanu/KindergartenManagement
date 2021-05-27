@@ -4,18 +4,17 @@
 $error-color: #d9230f;
 $primary-color: #5e72e4;
 $background-color: #172b4d;
-$hover-color: rgba($primary-color, 0.80);
+$hover-color: rgba($primary-color, 0.8);
 $border-radius-tabs: 0.5rem;
 $color-tab-text: #ffffff;
-
 
 .ag-theme-alpine {
     /* use theme parameters where possible */
     --ag-foreground-color: #000;
     --ag-background-color: #f6f9fc;
-    --ag-odd-row-background-color:#e9ecef;
+    --ag-odd-row-background-color: #e9ecef;
 }
-   
+
 .ag-theme-alpine .ag-header-cell-label {
     font-style: italic;
 }
@@ -31,7 +30,6 @@ $color-tab-text: #ffffff;
     color: $primary-color;
 }
 
-
 /***********       ALERTIFY JS      ***********/
 .ajs-button.ajs-ok {
     color: #ffffff;
@@ -41,15 +39,15 @@ $color-tab-text: #ffffff;
 .ajs-message {
     color: #ffffff;
 }
-  /**********      END ALERTIFY JS      *********/
+/**********      END ALERTIFY JS      *********/
 
-  /**********      FORM GROUP      *********/
+/**********      FORM GROUP      *********/
 .form-group.error {
-	color: $error-color;
+    color: $error-color;
 }
 
 .form-group.error .form-control {
-	color: $error-color;
+    color: $error-color;
     border: 1px solid $error-color;
 }
 
@@ -61,32 +59,11 @@ $color-tab-text: #ffffff;
 /**********      END FORM GROUP      *********/
 
 /**********      CHILDREN GROUPS TABS      *********/
-// .children-group-tabs {
-//     width: 100px;
-//     height: 63px;
-//     color: $color-tab-text;
-//     font-size: 16px;
-//     font-weight: 700;
-//     background-color: $background-color;
-//     border: 1px solid #000000;
-//     border-bottom: 0px;
-//     border-radius: $border-radius-tabs;
-//     &:hover {
-//         background: $hover-color;
-//     }
-//     &:focus {
-//         background: $error-color;
-//     }
-//     &:active {
-//         background: $error-color;
-//     }
-// }
+.group-selection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 
-    .group-selection {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
     .group-selection-btn {
         width: 200px;
         height: 50px;
@@ -98,6 +75,7 @@ $color-tab-text: #ffffff;
         background-color: $background-color;
         border: 1px solid #000000;
         border-radius: $border-radius-tabs;
+        cursor: pointer;
 
         &:hover {
             background: $hover-color;
@@ -106,18 +84,54 @@ $color-tab-text: #ffffff;
             background: $error-color;
         }
     }
+
     .active {
-            background: $error-color;
+        background: $error-color;
     }
+}
 
 /**********      END CHILDREN GROUPS TABS      *********/
 
 /**********      SCHEDULE      *********/
- 
+
 .schedule {
+    .schedule-options {
+        display: flex; 
+        justify-content:space-between;
+
+        .schedule-btn {
+            margin-right: 0px;
+            margin-bottom: 10px;
+            height: 50px;
+            width: 150px;
+        }
+
+        .schedule-btn.disabled {
+            cursor: default;
+        }
+
+        .schedule-mode-btn {
+            margin-bottom: 10px;
+            margin-left: 10px;
+            height: 50px;
+            width: 100px;
+        }
+
+        .label-mode {
+            margin-right: 10px; 
+            color:#000000; 
+            font-weight: 700;
+        }
+
+        .schedule-mode-btn.active {
+            background-color: $error-color;
+        }
+    }
+
     .schedule-row {
         display: flex;
     }
+    
     .schedule-header {
         font-weight: 700;
         background-color: $primary-color;
@@ -126,36 +140,20 @@ $color-tab-text: #ffffff;
 
     .schedule-cell {
         color: #000000;
-        font-weight: 700;;
-        border:1px solid $primary-color;
+        font-weight: 700;
+        border: 1px solid $primary-color;
         height: 25px;
     }
-    
+
     .schedule-cell-time {
         width: 100px;
         text-align: center;
     }
-    
+
     .schedule-cell-activity {
         flex-grow: 1;
     }
-}  
-
-.schedule-btn {
-    margin-right: 0px;
-    margin-bottom: 10px;  
-    height: 50px;
-    width: 150px;
-    margin-right: 10px;  
-} 
-
-.schedule-mode-btn {
-    margin-bottom: 10px;
-    margin-left: 10px;  
-    height: 50px;
-    width: 100px;
 }
+
+
 /**********      END SCHEDULE      *********/
-  
-  
-  

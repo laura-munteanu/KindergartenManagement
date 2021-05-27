@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Schedule } from 'src/app/models/schedule';
+import { CalendarDate, CalendarDateInterval, CalendarHelper, CalendarViewMode } from 'src/app/helpers';
 import { SchedulesService } from 'src/app/services';
 
 @Component({
@@ -11,24 +11,26 @@ import { SchedulesService } from 'src/app/services';
 })
 export class ScheduleCalendarAdminComponent implements OnInit {
   public currentDate: string;
-  public viewMode: string = 'daily';
-  public previousBtn: string;
-  public currentDayBtn: string;
-  public nextBtn: string;
+  public viewMode: CalendarViewMode;
+
+  private calendarDateInterval: CalendarDateInterval;
+  public calendarDays: CalendarDate[]; 
+
+  public previousBtnText: string;
+  public currentBtnText: string;
+  public nextBtnText: string;
 
   public activitiesCalendar: any;
   public groupId: any;
-  public intervalsOfTime: string[]=[''];
-  
-  public Days = ['']; 
+  public intervalsOfTime: string[] = [];
+  public CalendarViewMode = CalendarViewMode;
 
   constructor(
     private _route: ActivatedRoute,
     private _schedulesService: SchedulesService) { }
 
   ngOnInit(): void {
-    this.getDate();
-    this.changeViewMode(this.viewMode);
+    this.changeViewMode(CalendarViewMode.Daily);
     this.getTimeIntervals();
 
 
@@ -43,35 +45,30 @@ export class ScheduleCalendarAdminComponent implements OnInit {
     })
   }
   
-  public changeViewMode(mode: string) {
-    this.viewMode = mode;
-    if(this.viewMode == 'daily'){
-      this.previousBtn = 'Previuos day';
-      this.currentDayBtn = this.currentDate;
-      this.nextBtn = 'Next day';
+  public changeViewMode(viewMode: CalendarViewMode) {
+    this.viewMode = viewMode;
 
-      this.Days=[this.currentDate];
+    if (this.viewMode == CalendarViewMode.Daily) {
+      this.previousBtnText = 'Previous day';
+      this.nextBtnText = 'Next day';
+
+      this.calendarDateInterval = CalendarHelper.getDates(this.viewMode);
+
+      this.currentBtnText = this.currentDate;
+
+      this.calendarDays = [this.calendarDateInterval.startDate];
     }
     else {
-      this.previousBtn = 'Previous week';
-      this.currentDayBtn = '01 May 2021 - 05 May 2021';
-      this.nextBtn = 'Next week';
+      // this.previousBtn = 'Previous week';
+      // this.currentDayBtn = '01 May 2021 - 05 May 2021';
+      // this.nextBtn = 'Next week';
 
-      this.Days=['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+      // this.Days=['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     }
    }
 
-
-public getDate(){
-  let d= new Date();
-  d.getFullYear();//Get the year as a four digit number (yyyy)
-  d.getMonth();//Get the month as a number (0-11)
-  d.getDate();
-  this.currentDate = String(d.getDate()+' - ' + (d.getMonth() + 1) + ' - '+ d.getFullYear());
-}
-
-getTimeIntervals(){
-  let n: any;
+  getTimeIntervals(){
+    let n: any;
     for (var i = 14; i <= 35; i++) {
       n = i%2==0 ? i/2+'.00' : (i+1)/2-1+'.30';
       if(n < 10) {
@@ -79,6 +76,5 @@ getTimeIntervals(){
       }   
       this.intervalsOfTime.push(n);
     }
- 
-}
+  }
 }

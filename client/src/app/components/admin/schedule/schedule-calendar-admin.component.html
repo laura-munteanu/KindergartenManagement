@@ -1,30 +1,28 @@
-<div style="display: flex; justify-content:space-between;">
-  <div class="btn-group">
-    <button class="btn btn-primary schedule-btn">{{previousBtn}}</button>
-    <button class="btn btn-primary schedule-btn">{{currentDayBtn}}</button>
-    <button class="btn btn-primary schedule-btn">{{nextBtn}}</button>
-  </div>
-
-  <div>
-    <label class="col-form-label" style="margin-right: 10px; color:#000000; font-weight: 700;">View mode: </label>
-    <button (click)="changeViewMode('daily')" class="btn btn-primary schedule-mode-btn">Daily</button>
-    <button (click)="changeViewMode('weekly')" class="btn btn-primary schedule-mode-btn">Weekly</button>
-  </div>
-</div>
-
-
-
 <div class="schedule">
+  <div class="schedule-options">
+    <div class="btn-group">
+      <button class="btn btn-primary schedule-btn">{{previousBtnText}}</button>
+      <button class="btn btn-primary schedule-btn disabled" >{{currentBtnText}}</button>
+      <button class="btn btn-primary schedule-btn">{{nextBtnText}}</button>
+    </div>
+
+    <div>
+      <label class="col-form-label label-mode">View mode: </label>
+      <button (click)="changeViewMode(CalendarViewMode.Daily)" class="btn btn-primary schedule-mode-btn" [ngClass]="{active: viewMode == CalendarViewMode.Daily}">Daily</button>
+      <button (click)="changeViewMode(CalendarViewMode.Weekly)" class="btn btn-primary schedule-mode-btn" [ngClass]="{active: viewMode == CalendarViewMode.Weekly}">Weekly</button>
+    </div>
+  </div>
+
   <!-- header -->
   <div class="schedule-row schedule-header">
     <div class="schedule-cell schedule-cell-time">Time</div>
-    <div class="schedule-cell schedule-cell-activity" *ngFor="let day of Days">{{day}}</div>
+    <div class="schedule-cell schedule-cell-activity" *ngFor="let day of calendarDays">{{day}}</div>
   </div>
 
   <!-- table -->
 
   <div class="schedule-row" *ngFor="let time of intervalsOfTime">
     <div class="schedule-cell schedule-cell-time">{{time}}</div>
-    <div class="schedule-cell schedule-cell-activity" *ngFor="let day of Days"></div>
+    <div class="schedule-cell schedule-cell-activity" *ngFor="let day of calendarDays"></div>
   </div>
 </div>
