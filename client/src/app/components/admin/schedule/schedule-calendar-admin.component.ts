@@ -10,11 +10,9 @@ import { SchedulesService } from 'src/app/services';
   ]
 })
 export class ScheduleCalendarAdminComponent implements OnInit {
-  public currentDate: string;
   public viewMode: CalendarViewMode;
 
-  private calendarDateInterval: CalendarDateInterval;
-  public calendarDays: CalendarDate[]; 
+  public calendarDateInterval: CalendarDateInterval;
 
   public previousBtnText: string;
   public currentBtnText: string;
@@ -30,7 +28,7 @@ export class ScheduleCalendarAdminComponent implements OnInit {
     private _schedulesService: SchedulesService) { }
 
   ngOnInit(): void {
-    this.changeViewMode(CalendarViewMode.Daily);
+    this.changeViewMode(CalendarViewMode.Weekly);
     this.getTimeIntervals();
 
 
@@ -51,19 +49,14 @@ export class ScheduleCalendarAdminComponent implements OnInit {
     if (this.viewMode == CalendarViewMode.Daily) {
       this.previousBtnText = 'Previous day';
       this.nextBtnText = 'Next day';
-
       this.calendarDateInterval = CalendarHelper.getDates(this.viewMode);
-
-      this.currentBtnText = this.currentDate;
-
-      this.calendarDays = [this.calendarDateInterval.startDate];
+      this.currentBtnText = this.calendarDateInterval.startDate.displayDate;
     }
     else {
-      // this.previousBtn = 'Previous week';
-      // this.currentDayBtn = '01 May 2021 - 05 May 2021';
-      // this.nextBtn = 'Next week';
-
-      // this.Days=['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+      this.previousBtnText = 'Previous week';
+      this.nextBtnText = 'Next week';
+      this.calendarDateInterval = CalendarHelper.getDates(this.viewMode);
+      this.currentBtnText = `${this.calendarDateInterval.startDate.displayDate} - ${this.calendarDateInterval.endDate.displayDate}`;
     }
    }
 

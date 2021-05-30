@@ -9,7 +9,6 @@ $border-radius-tabs: 0.5rem;
 $color-tab-text: #ffffff;
 
 .ag-theme-alpine {
-    /* use theme parameters where possible */
     --ag-foreground-color: #000;
     --ag-background-color: #f6f9fc;
     --ag-odd-row-background-color: #e9ecef;
@@ -36,6 +35,7 @@ $color-tab-text: #ffffff;
     background-color: $error-color;
     border: 1px solid #a91b0c;
 }
+
 .ajs-message {
     color: #ffffff;
 }
@@ -136,6 +136,14 @@ $color-tab-text: #ffffff;
         font-weight: 700;
         background-color: $primary-color;
         text-align: center;
+
+        .schedule-cell {
+            height: 50px;
+        }
+
+        .schedule-cell-time {
+            line-height: 50px;
+        }
     }
 
     .schedule-cell {
@@ -154,6 +162,5 @@ $color-tab-text: #ffffff;
         flex-grow: 1;
     }
 }
-
 
 /**********      END SCHEDULE      *********/
