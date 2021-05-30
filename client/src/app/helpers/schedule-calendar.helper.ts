@@ -45,22 +45,22 @@ export class CalendarHelper {
         currentDate.setDate(currentDate.getDate() + 2);
       }
 
-      const startDate = new Date();
-      startDate.setDate(currentDate.getDate() - currentDate.getDay() + 1);
-      const endDate = new Date();
-      endDate.setDate(startDate.getDate() + 5);
+      const startDate = new Date(currentDate);
+      startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+      const endDate = new Date(currentDate);
+      endDate.setDate(endDate.getDate() + 5);
 
-      const days = [];
+      const workingDaays = [];
       for ( let i = 0; i < 5; i++){
-        const d = new Date();
-        d.setDate(startDate.getDate() + i);
-        days.push(CalendarHelper.getCalendarDateByDate(d));
+        const workingDate = new Date(currentDate);
+        workingDate.setDate(workingDate.getDate() + i);
+        workingDaays.push(CalendarHelper.getCalendarDateByDate(workingDate));
       }
 
       return {
         startDate: CalendarHelper.getCalendarDateByDate(startDate),
         endDate: CalendarHelper.getCalendarDateByDate(endDate),
-        days: days
+        days: workingDaays
       };
     }
   }
@@ -69,7 +69,11 @@ export class CalendarHelper {
     return  {
       date: date,
       day: CalendarHelper.daysOfWeek[date.getDay() - 1],
-      displayDate: `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+      displayDate: `${CalendarHelper.padNumber(date.getDate())}.${CalendarHelper.padNumber(date.getMonth() + 1)}.${date.getFullYear()}`
     };
+  }
+
+  public static padNumber(nb: number): String {
+    return nb <= 9 ? `0${nb}` : String(nb);
   }
 }
