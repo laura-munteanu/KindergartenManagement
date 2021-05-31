@@ -103,7 +103,11 @@ $color-tab-text: #ffffff;
             margin-right: 0px;
             margin-bottom: 10px;
             height: 50px;
-            width: 150px;
+            width: 145px;
+        }
+
+        .schedule-btn.weekly {
+            width: 220px;
         }
 
         .schedule-btn.disabled {

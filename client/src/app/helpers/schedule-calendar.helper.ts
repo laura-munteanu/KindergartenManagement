@@ -50,17 +50,17 @@ export class CalendarHelper {
       const endDate = new Date(currentDate);
       endDate.setDate(endDate.getDate() + 5);
 
-      const workingDaays = [];
-      for ( let i = 0; i < 5; i++){
+      const workingDays = [];
+      for (let i = 0; i < 5; i++){
         const workingDate = new Date(currentDate);
         workingDate.setDate(workingDate.getDate() + i);
-        workingDaays.push(CalendarHelper.getCalendarDateByDate(workingDate));
+        workingDays.push(CalendarHelper.getCalendarDateByDate(workingDate));
       }
 
       return {
         startDate: CalendarHelper.getCalendarDateByDate(startDate),
         endDate: CalendarHelper.getCalendarDateByDate(endDate),
-        days: workingDaays
+        days: workingDays
       };
     }
   }

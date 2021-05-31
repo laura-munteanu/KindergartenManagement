@@ -2,7 +2,7 @@
   <div class="schedule-options">
     <div class="btn-group">
       <button class="btn btn-primary schedule-btn">{{previousBtnText}}</button>
-      <button class="btn btn-primary schedule-btn disabled">{{currentBtnText}}</button>
+      <button class="btn btn-primary schedule-btn disabled"[ngClass]="{weekly: viewMode == CalendarViewMode.Weekly}">{{currentBtnText}}</button>
       <button class="btn btn-primary schedule-btn">{{nextBtnText}}</button>
     </div>
 

@@ -28,9 +28,8 @@ export class ScheduleCalendarAdminComponent implements OnInit {
     private _schedulesService: SchedulesService) { }
 
   ngOnInit(): void {
-    this.changeViewMode(CalendarViewMode.Weekly);
+    this.changeViewMode(CalendarViewMode.Daily);
     this.getTimeIntervals();
-
 
     this._route.paramMap.subscribe(params =>{
       this.groupId = params.get('groupId');
