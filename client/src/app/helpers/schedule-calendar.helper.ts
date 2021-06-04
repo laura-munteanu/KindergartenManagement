@@ -3,6 +3,11 @@ export enum CalendarViewMode {
   Weekly = 2
 }
 
+export enum CalendarDateChange {
+  Previous = 1,
+  Next = 2
+}
+
 export interface CalendarDate {
   date: Date,
   day: string,
@@ -66,12 +71,48 @@ export class CalendarHelper {
   }
 
   public static getCalendarDateByDate(date: Date): CalendarDate {
-    return  {
+    return {
       date: date,
       day: CalendarHelper.daysOfWeek[date.getDay() - 1],
       displayDate: `${CalendarHelper.padNumber(date.getDate())}.${CalendarHelper.padNumber(date.getMonth() + 1)}.${date.getFullYear()}`
     };
   }
+  
+
+
+
+
+  
+  public static changeDate(changeDate: CalendarDateChange, date: Date): CalendarDate {
+    if (changeDate == CalendarDateChange.Next){
+      date.setDate(date.getDate() + 1);
+    }
+    else if (changeDate == CalendarDateChange.Previous) {
+      date.setDate(date.getDate() - 1);
+    }
+    else {
+      date.setDate(date.getDate());
+    }
+    return {
+      date: date,
+      day: CalendarHelper.daysOfWeek[date.getDay() - 1],
+      displayDate: `${CalendarHelper.padNumber(date.getDate())}.${CalendarHelper.padNumber(date.getMonth() + 1)}.${date.getFullYear()}`
+    };
+
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   public static padNumber(nb: number): String {
     return nb <= 9 ? `0${nb}` : String(nb);

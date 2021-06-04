@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CalendarDate, CalendarDateInterval, CalendarHelper, CalendarViewMode } from 'src/app/helpers';
+import { CalendarDate, CalendarDateInterval, CalendarHelper, CalendarViewMode, CalendarDateChange } from 'src/app/helpers';
 import { SchedulesService } from 'src/app/services';
 
 @Component({
@@ -11,6 +11,7 @@ import { SchedulesService } from 'src/app/services';
 })
 export class ScheduleCalendarAdminComponent implements OnInit {
   public viewMode: CalendarViewMode;
+  // public changeDate: CalendarDateChange;
 
   public calendarDateInterval: CalendarDateInterval;
 
@@ -58,6 +59,11 @@ export class ScheduleCalendarAdminComponent implements OnInit {
       this.currentBtnText = `${this.calendarDateInterval.startDate.displayDate} - ${this.calendarDateInterval.endDate.displayDate}`;
     }
    }
+
+  // public changeTimeSchedule(changeDate: CalendarDateChange){
+  //   this.changeDate = changeDate;
+
+  // } 
 
   getTimeIntervals(){
     let n: any;
