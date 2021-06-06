@@ -14,11 +14,11 @@ export class SchedulesService {
     return this._http.get(this.url + '/' + id);
   }
 
-  getList(groupId: any, startTime: any, endTime: any): Observable<any> {
+  getList(groupId: any, startDate: Date, endDate: Date): Observable<any> {
     let params = new HttpParams();
     params = params.append('groupId', groupId);
-    params = params.append('startTime', startTime);
-    params = params.append('endTime', endTime);
-    return this._http.get(this.url,{params: params});
+    params = params.append('startTime', startDate.toISOString());
+    params = params.append('endTime', endDate.toISOString());
+    return this._http.get(this.url, {params: params});
   }
 }
